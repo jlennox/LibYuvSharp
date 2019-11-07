@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net461;netcoreapp2.0</TargetFrameworks>
+    <RootNamespace>Lennox.LibYuvSharp</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+    <PackageId>Lennox.LibYuvSharp</PackageId>
+    <Title>LibYuvSharp</Title>
+    <PackageDescription>LibYuvSharp is a library for .net framework and dotnet core that provides a basic calling interface into libyuv</PackageDescription>
+    <Authors>Joseph Lennox</Authors>
+    <Copyright>Joseph Lennox</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/jlennox/LibYuvSharp/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jlennox/LibYuvSharp/</RepositoryUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Update="libyuv_internal.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="libyuv_internal.dll.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

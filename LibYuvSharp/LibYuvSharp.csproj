@@ -16,7 +16,15 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/jlennox/LibYuvSharp/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jlennox/LibYuvSharp/</RepositoryUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
   <ItemGroup>
     <Content Include="lib\runtimes\win-x64\native\**"> <!-- PackagePath="runtimes">-->
       <PackagePath>runtimes/win-x64/native</PackagePath>

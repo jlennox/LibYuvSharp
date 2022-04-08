@@ -42,14 +42,14 @@ namespace Lennox.LibYuvSharp
     {
         private const string _path = "libyuv_internal.dll";
 
-        // C:\code2\libyuv\src\include\libyuv\compare.h:22
+        // \include\libyuv\compare.h:22
         /// <summary>
         /// Compute a hash for specified memory. Seed of 5381 recommended.
         /// </summary>
         [DllImport(_path, SetLastError = true)]
         public static extern uint HashDjb2(byte* src, ulong count, uint seed);
 
-        // C:\code2\libyuv\src\include\libyuv\compare.h:28
+        // \include\libyuv\compare.h:28
         /// <summary>
         /// Hamming Distance
         /// </summary>
@@ -58,7 +58,7 @@ namespace Lennox.LibYuvSharp
         byte* src_b,
         int count);
 
-        // C:\code2\libyuv\src\include\libyuv\compare.h:36
+        // \include\libyuv\compare.h:36
         /// <summary>
         /// Scan an opaque argb image and return fourcc based on alpha offset.
         /// Returns FOURCC_ARGB, FOURCC_BGRA, or 0 if unknown.
@@ -69,7 +69,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\compare.h:42
+        // \include\libyuv\compare.h:42
         /// <summary>
         /// Sum Square Error - used to compute Mean Square Error or PSNR.
         /// </summary>
@@ -78,7 +78,7 @@ namespace Lennox.LibYuvSharp
         byte* src_b,
         int count);
 
-        // C:\code2\libyuv\src\include\libyuv\compare.h:50
+        // \include\libyuv\compare.h:50
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -89,13 +89,13 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\compare.h:55
+        // \include\libyuv\compare.h:55
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
         public static extern double SumSquareErrorToPsnr(ulong sse, ulong count);
 
-        // C:\code2\libyuv\src\include\libyuv\compare.h:63
+        // \include\libyuv\compare.h:63
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -106,7 +106,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\compare.h:79
+        // \include\libyuv\compare.h:79
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -125,7 +125,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\compare.h:87
+        // \include\libyuv\compare.h:87
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -136,7 +136,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\compare.h:103
+        // \include\libyuv\compare.h:103
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -155,7 +155,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:42
+        // \include\libyuv\convert.h:42
         /// <summary>
         /// TODO(fbarchard): fix WebRTC source to include following libyuv headers:
         /// Convert I444 to I420.
@@ -176,7 +176,25 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:57
+        // \include\libyuv\convert.h:57
+        /// <summary>
+        /// Convert I444 to NV12.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I444ToNV12(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_uv,
+        int dst_stride_uv,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:72
         /// <summary>
         /// Convert I444 to NV21.
         /// </summary>
@@ -194,7 +212,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:74
+        // \include\libyuv\convert.h:89
         /// <summary>
         /// Convert I422 to I420.
         /// </summary>
@@ -214,7 +232,81 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:89
+        // \include\libyuv\convert.h:106
+        /// <summary>
+        /// Convert I422 to I444.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I422ToI444(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_u,
+        int dst_stride_u,
+        byte* dst_v,
+        int dst_stride_v,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:123
+        /// <summary>
+        /// Convert I422 to I210.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I422ToI210(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_u,
+        int dst_stride_u,
+        ushort* dst_v,
+        int dst_stride_v,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:136
+        /// <summary>
+        /// Convert MM21 to NV12.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int MM21ToNV12(byte* src_y,
+        int src_stride_y,
+        byte* src_uv,
+        int src_stride_uv,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_uv,
+        int dst_stride_uv,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:151
+        /// <summary>
+        /// Convert MM21 to I420.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int MM21ToI420(byte* src_y,
+        int src_stride_y,
+        byte* src_uv,
+        int src_stride_uv,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_u,
+        int dst_stride_u,
+        byte* dst_v,
+        int dst_stride_v,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:166
         /// <summary>
         /// Convert I422 to NV21.
         /// </summary>
@@ -232,7 +324,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:107
+        // \include\libyuv\convert.h:184
         /// <summary>
         /// Copy I420 to I420.
         /// </summary>
@@ -252,7 +344,27 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:126
+        // \include\libyuv\convert.h:201
+        /// <summary>
+        /// Convert I420 to I444.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I420ToI444(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_u,
+        int dst_stride_u,
+        byte* dst_v,
+        int dst_stride_v,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:220
         /// <summary>
         /// Copy I010 to I010
         /// </summary>
@@ -272,7 +384,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:144
+        // \include\libyuv\convert.h:238
         /// <summary>
         /// Convert 10 bit YUV to 8 bit
         /// </summary>
@@ -292,7 +404,254 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:157
+        // \include\libyuv\convert.h:255
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I210ToI422(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_u,
+        int dst_stride_u,
+        byte* dst_v,
+        int dst_stride_v,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:272
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I410ToI444(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_u,
+        int dst_stride_u,
+        byte* dst_v,
+        int dst_stride_v,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:289
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I012ToI420(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_u,
+        int dst_stride_u,
+        byte* dst_v,
+        int dst_stride_v,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:306
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I212ToI422(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_u,
+        int dst_stride_u,
+        byte* dst_v,
+        int dst_stride_v,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:323
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I412ToI444(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_u,
+        int dst_stride_u,
+        byte* dst_v,
+        int dst_stride_v,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:342
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I410ToI010(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_u,
+        int dst_stride_u,
+        ushort* dst_v,
+        int dst_stride_v,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:361
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I210ToI010(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_u,
+        int dst_stride_u,
+        ushort* dst_v,
+        int dst_stride_v,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:378
+        /// <summary>
+        /// Convert I010 to I410
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I010ToI410(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_u,
+        int dst_stride_u,
+        ushort* dst_v,
+        int dst_stride_v,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:398
+        /// <summary>
+        /// Convert I012 to I412
+        /// Convert I210 to I410
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I210ToI410(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_u,
+        int dst_stride_u,
+        ushort* dst_v,
+        int dst_stride_v,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:416
+        /// <summary>
+        /// Convert I212 to I412
+        /// Convert I010 to P010
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I010ToP010(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_uv,
+        int dst_stride_uv,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:431
+        /// <summary>
+        /// Convert I210 to P210
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I210ToP210(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_uv,
+        int dst_stride_uv,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:446
+        /// <summary>
+        /// Convert I012 to P012
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I012ToP012(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_uv,
+        int dst_stride_uv,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:461
+        /// <summary>
+        /// Convert I212 to P212
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I212ToP212(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_uv,
+        int dst_stride_uv,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:474
         /// <summary>
         /// Convert I400 (grey) to I420.
         /// </summary>
@@ -308,7 +667,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:168
+        // \include\libyuv\convert.h:485
         /// <summary>
         /// Convert I400 (grey) to NV21.
         /// </summary>
@@ -322,7 +681,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:185
+        // \include\libyuv\convert.h:502
         /// <summary>
         /// Convert NV12 to I420.
         /// </summary>
@@ -340,7 +699,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:200
+        // \include\libyuv\convert.h:517
         /// <summary>
         /// Convert NV21 to I420.
         /// </summary>
@@ -358,8 +717,76 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:213
+        // \include\libyuv\convert.h:530
         /// <summary>
+        /// Convert NV12 to NV24.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int NV12ToNV24(byte* src_y,
+        int src_stride_y,
+        byte* src_uv,
+        int src_stride_uv,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_uv,
+        int dst_stride_uv,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:543
+        /// <summary>
+        /// Convert NV16 to NV24.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int NV16ToNV24(byte* src_y,
+        int src_stride_y,
+        byte* src_uv,
+        int src_stride_uv,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_uv,
+        int dst_stride_uv,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:556
+        /// <summary>
+        /// Convert P010 to P410.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int P010ToP410(ushort* src_y,
+        int src_stride_y,
+        ushort* src_uv,
+        int src_stride_uv,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_uv,
+        int dst_stride_uv,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:575
+        /// <summary>
+        /// Convert P012 to P412.
+        /// Convert P016 to P416.
+        /// Convert P210 to P410.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int P210ToP410(ushort* src_y,
+        int src_stride_y,
+        ushort* src_uv,
+        int src_stride_uv,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_uv,
+        int dst_stride_uv,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:594
+        /// <summary>
+        /// Convert P212 to P412.
+        /// Convert P216 to P416.
         /// Convert YUY2 to I420.
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -374,7 +801,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:226
+        // \include\libyuv\convert.h:607
         /// <summary>
         /// Convert UYVY to I420.
         /// </summary>
@@ -390,7 +817,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:237
+        // \include\libyuv\convert.h:618
         /// <summary>
         /// Convert AYUV to NV12.
         /// </summary>
@@ -404,7 +831,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:248
+        // \include\libyuv\convert.h:629
         /// <summary>
         /// Convert AYUV to NV21.
         /// </summary>
@@ -418,23 +845,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:261
-        /// <summary>
-        /// Convert M420 to I420.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int M420ToI420(byte* src_m420,
-        int src_stride_m420,
-        byte* dst_y,
-        int dst_stride_y,
-        byte* dst_u,
-        int dst_stride_u,
-        byte* dst_v,
-        int dst_stride_v,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert.h:279
+        // \include\libyuv\convert.h:647
         /// <summary>
         /// Convert Android420 to I420.
         /// </summary>
@@ -455,7 +866,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:292
+        // \include\libyuv\convert.h:660
         /// <summary>
         /// ARGB little endian (bgra in memory) to I420.
         /// </summary>
@@ -471,7 +882,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:305
+        // \include\libyuv\convert.h:673
         /// <summary>
         /// BGRA little endian (argb in memory) to I420.
         /// </summary>
@@ -487,7 +898,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:318
+        // \include\libyuv\convert.h:686
         /// <summary>
         /// ABGR little endian (rgba in memory) to I420.
         /// </summary>
@@ -503,7 +914,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:331
+        // \include\libyuv\convert.h:699
         /// <summary>
         /// RGBA little endian (abgr in memory) to I420.
         /// </summary>
@@ -519,7 +930,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:344
+        // \include\libyuv\convert.h:712
         /// <summary>
         /// RGB little endian (bgr in memory) to I420.
         /// </summary>
@@ -535,7 +946,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:357
+        // \include\libyuv\convert.h:725
         /// <summary>
         /// RGB little endian (bgr in memory) to J420.
         /// </summary>
@@ -551,7 +962,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:370
+        // \include\libyuv\convert.h:738
         /// <summary>
         /// RGB big endian (rgb in memory) to I420.
         /// </summary>
@@ -567,7 +978,23 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:383
+        // \include\libyuv\convert.h:751
+        /// <summary>
+        /// RGB big endian (rgb in memory) to J420.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int RAWToJ420(byte* src_raw,
+        int src_stride_raw,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_u,
+        int dst_stride_u,
+        byte* dst_v,
+        int dst_stride_v,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:764
         /// <summary>
         /// RGB16 (RGBP fourcc) little endian to I420.
         /// </summary>
@@ -583,7 +1010,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:396
+        // \include\libyuv\convert.h:777
         /// <summary>
         /// RGB15 (RGBO fourcc) little endian to I420.
         /// </summary>
@@ -599,7 +1026,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:409
+        // \include\libyuv\convert.h:790
         /// <summary>
         /// RGB12 (R444 fourcc) little endian to I420.
         /// </summary>
@@ -615,7 +1042,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:418
+        // \include\libyuv\convert.h:799
         /// <summary>
         /// RGB little endian (bgr in memory) to J400.
         /// </summary>
@@ -627,7 +1054,80 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert.h:496
+        // \include\libyuv\convert.h:808
+        /// <summary>
+        /// RGB big endian (rgb in memory) to J400.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int RAWToJ400(byte* src_raw,
+        int src_stride_raw,
+        byte* dst_yj,
+        int dst_stride_yj,
+        int width,
+        int height);
+
+        // \include\libyuv\convert.h:824
+        /// <summary>
+        /// src_width/height provided by capture.
+        /// dst_width/height for clipping determine final size.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int MJPGToI420(byte* sample,
+        IntPtr sample_size,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_u,
+        int dst_stride_u,
+        byte* dst_v,
+        int dst_stride_v,
+        int src_width,
+        int src_height,
+        int dst_width,
+        int dst_height);
+
+        // \include\libyuv\convert.h:837
+        /// <summary>
+        /// JPEG to NV21
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int MJPGToNV21(byte* sample,
+        IntPtr sample_size,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_vu,
+        int dst_stride_vu,
+        int src_width,
+        int src_height,
+        int dst_width,
+        int dst_height);
+
+        // \include\libyuv\convert.h:850
+        /// <summary>
+        /// JPEG to NV12
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int MJPGToNV12(byte* sample,
+        IntPtr sample_size,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_uv,
+        int dst_stride_uv,
+        int src_width,
+        int src_height,
+        int dst_width,
+        int dst_height);
+
+        // \include\libyuv\convert.h:857
+        /// <summary>
+        /// Query size of MJPG in pixels.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int MJPGSize(byte* sample,
+        IntPtr sample_size,
+        int* width,
+        int* height);
+
+        // \include\libyuv\convert.h:897
         /// <summary>
         /// Convert camera sample to I420 with cropping, rotation and vertical flip.
         /// "src_size" is needed to parse MJPG.
@@ -670,12 +1170,13 @@ namespace Lennox.LibYuvSharp
         RotationMode rotation,
         uint fourcc);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:37
+        // \include\libyuv\convert_argb.h:92
         /// <summary>
-        /// TODO(fbarchard): This set of functions should exactly match convert.h
-        /// TODO(fbarchard): Add tests. Create random content of right size and convert
-        /// with C vs Opt and or to I420 and compare.
-        /// TODO(fbarchard): Some of these functions lack parameter setting.
+        /// Conversion matrix for YUV to RGB
+        /// Conversion matrix for YVU to BGR
+        /// Macros for end swapped destination Matrix conversions.
+        /// Swap UV and pass mirrored kYvuJPEGConstants matrix.
+        /// TODO(fbarchard): Add macro for each Matrix function.
         /// Alias.
         /// Copy ARGB to ARGB.
         /// </summary>
@@ -687,7 +1188,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:51
+        // \include\libyuv\convert_argb.h:105
         /// <summary>
         /// Convert I420 to ARGB.
         /// </summary>
@@ -703,7 +1204,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:64
+        // \include\libyuv\convert_argb.h:118
         /// <summary>
         /// Convert I420 to ABGR.
         /// </summary>
@@ -719,7 +1220,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:77
+        // \include\libyuv\convert_argb.h:131
         /// <summary>
         /// Convert J420 to ARGB.
         /// </summary>
@@ -735,7 +1236,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:90
+        // \include\libyuv\convert_argb.h:144
         /// <summary>
         /// Convert J420 to ABGR.
         /// </summary>
@@ -751,7 +1252,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:103
+        // \include\libyuv\convert_argb.h:157
         /// <summary>
         /// Convert H420 to ARGB.
         /// </summary>
@@ -767,7 +1268,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:116
+        // \include\libyuv\convert_argb.h:170
         /// <summary>
         /// Convert H420 to ABGR.
         /// </summary>
@@ -783,7 +1284,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:129
+        // \include\libyuv\convert_argb.h:183
         /// <summary>
         /// Convert U420 to ARGB.
         /// </summary>
@@ -799,7 +1300,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:142
+        // \include\libyuv\convert_argb.h:196
         /// <summary>
         /// Convert U420 to ABGR.
         /// </summary>
@@ -815,103 +1316,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:155
-        /// <summary>
-        /// Convert I010 to ARGB.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int I010ToARGB(ushort* src_y,
-        int src_stride_y,
-        ushort* src_u,
-        int src_stride_u,
-        ushort* src_v,
-        int src_stride_v,
-        byte* dst_argb,
-        int dst_stride_argb,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:181
-        /// <summary>
-        /// Convert I010 to ABGR.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int I010ToABGR(ushort* src_y,
-        int src_stride_y,
-        ushort* src_u,
-        int src_stride_u,
-        ushort* src_v,
-        int src_stride_v,
-        byte* dst_abgr,
-        int dst_stride_abgr,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:194
-        /// <summary>
-        /// Convert H010 to ARGB.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int H010ToARGB(ushort* src_y,
-        int src_stride_y,
-        ushort* src_u,
-        int src_stride_u,
-        ushort* src_v,
-        int src_stride_v,
-        byte* dst_argb,
-        int dst_stride_argb,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:207
-        /// <summary>
-        /// Convert H010 to ABGR.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int H010ToABGR(ushort* src_y,
-        int src_stride_y,
-        ushort* src_u,
-        int src_stride_u,
-        ushort* src_v,
-        int src_stride_v,
-        byte* dst_abgr,
-        int dst_stride_abgr,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:220
-        /// <summary>
-        /// Convert U010 to ARGB.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int U010ToARGB(ushort* src_y,
-        int src_stride_y,
-        ushort* src_u,
-        int src_stride_u,
-        ushort* src_v,
-        int src_stride_v,
-        byte* dst_argb,
-        int dst_stride_argb,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:233
-        /// <summary>
-        /// Convert U010 to ABGR.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int U010ToABGR(ushort* src_y,
-        int src_stride_y,
-        ushort* src_u,
-        int src_stride_u,
-        ushort* src_v,
-        int src_stride_v,
-        byte* dst_abgr,
-        int dst_stride_abgr,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:246
+        // \include\libyuv\convert_argb.h:209
         /// <summary>
         /// Convert I422 to ARGB.
         /// </summary>
@@ -927,7 +1332,119 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:259
+        // \include\libyuv\convert_argb.h:222
+        /// <summary>
+        /// Convert I422 to ABGR.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I422ToABGR(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_abgr,
+        int dst_stride_abgr,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:235
+        /// <summary>
+        /// Convert J422 to ARGB.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int J422ToARGB(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:248
+        /// <summary>
+        /// Convert J422 to ABGR.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int J422ToABGR(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_abgr,
+        int dst_stride_abgr,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:261
+        /// <summary>
+        /// Convert H422 to ARGB.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int H422ToARGB(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:274
+        /// <summary>
+        /// Convert H422 to ABGR.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int H422ToABGR(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_abgr,
+        int dst_stride_abgr,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:287
+        /// <summary>
+        /// Convert U422 to ARGB.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int U422ToARGB(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:300
+        /// <summary>
+        /// Convert U422 to ABGR.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int U422ToABGR(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_abgr,
+        int dst_stride_abgr,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:313
         /// <summary>
         /// Convert I444 to ARGB.
         /// </summary>
@@ -943,39 +1460,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:272
-        /// <summary>
-        /// Convert U444 to ARGB.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int U444ToARGB(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_argb,
-        int dst_stride_argb,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:285
-        /// <summary>
-        /// Convert J444 to ARGB.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int J444ToARGB(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_argb,
-        int dst_stride_argb,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:298
+        // \include\libyuv\convert_argb.h:326
         /// <summary>
         /// Convert I444 to ABGR.
         /// </summary>
@@ -991,7 +1476,295 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:314
+        // \include\libyuv\convert_argb.h:339
+        /// <summary>
+        /// Convert J444 to ARGB.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int J444ToARGB(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:352
+        /// <summary>
+        /// Convert J444 to ABGR.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int J444ToABGR(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_abgr,
+        int dst_stride_abgr,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:365
+        /// <summary>
+        /// Convert H444 to ARGB.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int H444ToARGB(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:378
+        /// <summary>
+        /// Convert H444 to ABGR.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int H444ToABGR(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_abgr,
+        int dst_stride_abgr,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:391
+        /// <summary>
+        /// Convert U444 to ARGB.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int U444ToARGB(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:404
+        /// <summary>
+        /// Convert U444 to ABGR.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int U444ToABGR(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_abgr,
+        int dst_stride_abgr,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:417
+        /// <summary>
+        /// Convert I010 to ARGB.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I010ToARGB(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:430
+        /// <summary>
+        /// Convert I010 to ABGR.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I010ToABGR(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_abgr,
+        int dst_stride_abgr,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:443
+        /// <summary>
+        /// Convert H010 to ARGB.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int H010ToARGB(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:456
+        /// <summary>
+        /// Convert H010 to ABGR.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int H010ToABGR(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_abgr,
+        int dst_stride_abgr,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:469
+        /// <summary>
+        /// Convert U010 to ARGB.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int U010ToARGB(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:482
+        /// <summary>
+        /// Convert U010 to ABGR.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int U010ToABGR(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_abgr,
+        int dst_stride_abgr,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:495
+        /// <summary>
+        /// Convert I210 to ARGB.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I210ToARGB(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:508
+        /// <summary>
+        /// Convert I210 to ABGR.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I210ToABGR(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_abgr,
+        int dst_stride_abgr,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:521
+        /// <summary>
+        /// Convert H210 to ARGB.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int H210ToARGB(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:534
+        /// <summary>
+        /// Convert H210 to ABGR.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int H210ToABGR(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_abgr,
+        int dst_stride_abgr,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:547
+        /// <summary>
+        /// Convert U210 to ARGB.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int U210ToARGB(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:560
+        /// <summary>
+        /// Convert U210 to ABGR.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int U210ToABGR(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_abgr,
+        int dst_stride_abgr,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:576
         /// <summary>
         /// Convert I420 with Alpha to preattenuated ARGB.
         /// </summary>
@@ -1010,7 +1783,7 @@ namespace Lennox.LibYuvSharp
         int height,
         int attenuate);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:330
+        // \include\libyuv\convert_argb.h:592
         /// <summary>
         /// Convert I420 with Alpha to preattenuated ABGR.
         /// </summary>
@@ -1029,7 +1802,83 @@ namespace Lennox.LibYuvSharp
         int height,
         int attenuate);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:339
+        // \include\libyuv\convert_argb.h:608
+        /// <summary>
+        /// Convert I422 with Alpha to preattenuated ARGB.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I422AlphaToARGB(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* src_a,
+        int src_stride_a,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height,
+        int attenuate);
+
+        // \include\libyuv\convert_argb.h:624
+        /// <summary>
+        /// Convert I422 with Alpha to preattenuated ABGR.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I422AlphaToABGR(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* src_a,
+        int src_stride_a,
+        byte* dst_abgr,
+        int dst_stride_abgr,
+        int width,
+        int height,
+        int attenuate);
+
+        // \include\libyuv\convert_argb.h:640
+        /// <summary>
+        /// Convert I444 with Alpha to preattenuated ARGB.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I444AlphaToARGB(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* src_a,
+        int src_stride_a,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height,
+        int attenuate);
+
+        // \include\libyuv\convert_argb.h:656
+        /// <summary>
+        /// Convert I444 with Alpha to preattenuated ABGR.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I444AlphaToABGR(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* src_a,
+        int src_stride_a,
+        byte* dst_abgr,
+        int dst_stride_abgr,
+        int width,
+        int height,
+        int attenuate);
+
+        // \include\libyuv\convert_argb.h:665
         /// <summary>
         /// Convert I400 (grey) to ARGB.  Reverse of ARGBToI400.
         /// </summary>
@@ -1041,7 +1890,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:348
+        // \include\libyuv\convert_argb.h:674
         /// <summary>
         /// Convert J400 (jpeg grey) to ARGB.
         /// </summary>
@@ -1053,7 +1902,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:362
+        // \include\libyuv\convert_argb.h:688
         /// <summary>
         /// Alias.
         /// Convert NV12 to ARGB.
@@ -1068,7 +1917,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:373
+        // \include\libyuv\convert_argb.h:699
         /// <summary>
         /// Convert NV21 to ARGB.
         /// </summary>
@@ -1082,7 +1931,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:384
+        // \include\libyuv\convert_argb.h:710
         /// <summary>
         /// Convert NV12 to ABGR.
         /// </summary>
@@ -1096,7 +1945,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:395
+        // \include\libyuv\convert_argb.h:721
         /// <summary>
         /// Convert NV21 to ABGR.
         /// </summary>
@@ -1110,7 +1959,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:406
+        // \include\libyuv\convert_argb.h:732
         /// <summary>
         /// Convert NV12 to RGB24.
         /// </summary>
@@ -1124,7 +1973,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:417
+        // \include\libyuv\convert_argb.h:743
         /// <summary>
         /// Convert NV21 to RGB24.
         /// </summary>
@@ -1138,7 +1987,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:428
+        // \include\libyuv\convert_argb.h:754
         /// <summary>
         /// Convert NV21 to YUV24.
         /// </summary>
@@ -1152,7 +2001,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:439
+        // \include\libyuv\convert_argb.h:765
         /// <summary>
         /// Convert NV12 to RAW.
         /// </summary>
@@ -1166,7 +2015,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:450
+        // \include\libyuv\convert_argb.h:776
         /// <summary>
         /// Convert NV21 to RAW.
         /// </summary>
@@ -1180,19 +2029,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:459
-        /// <summary>
-        /// Convert M420 to ARGB.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int M420ToARGB(byte* src_m420,
-        int src_stride_m420,
-        byte* dst_argb,
-        int dst_stride_argb,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:468
+        // \include\libyuv\convert_argb.h:785
         /// <summary>
         /// Convert YUY2 to ARGB.
         /// </summary>
@@ -1204,7 +2041,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:477
+        // \include\libyuv\convert_argb.h:794
         /// <summary>
         /// Convert UYVY to ARGB.
         /// </summary>
@@ -1216,87 +2053,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:490
-        /// <summary>
-        /// Convert J422 to ARGB.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int J422ToARGB(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_argb,
-        int dst_stride_argb,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:503
-        /// <summary>
-        /// Convert J422 to ABGR.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int J422ToABGR(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_abgr,
-        int dst_stride_abgr,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:516
-        /// <summary>
-        /// Convert H422 to ARGB.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int H422ToARGB(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_argb,
-        int dst_stride_argb,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:529
-        /// <summary>
-        /// Convert U422 to ARGB.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int U422ToARGB(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_argb,
-        int dst_stride_argb,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:542
-        /// <summary>
-        /// Convert H422 to ABGR.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int H422ToABGR(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_abgr,
-        int dst_stride_abgr,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:568
+        // \include\libyuv\convert_argb.h:807
         /// <summary>
         /// Convert I010 to AR30.
         /// </summary>
@@ -1312,7 +2069,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:581
+        // \include\libyuv\convert_argb.h:820
         /// <summary>
         /// Convert H010 to AR30.
         /// </summary>
@@ -1328,23 +2085,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:594
-        /// <summary>
-        /// Convert U010 to AR30.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int U010ToAR30(ushort* src_y,
-        int src_stride_y,
-        ushort* src_u,
-        int src_stride_u,
-        ushort* src_v,
-        int src_stride_v,
-        byte* dst_ar30,
-        int dst_stride_ar30,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:607
+        // \include\libyuv\convert_argb.h:833
         /// <summary>
         /// Convert I010 to AB30.
         /// </summary>
@@ -1360,7 +2101,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:620
+        // \include\libyuv\convert_argb.h:846
         /// <summary>
         /// Convert H010 to AB30.
         /// </summary>
@@ -1376,7 +2117,23 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:633
+        // \include\libyuv\convert_argb.h:859
+        /// <summary>
+        /// Convert U010 to AR30.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int U010ToAR30(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_ar30,
+        int dst_stride_ar30,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:872
         /// <summary>
         /// Convert U010 to AB30.
         /// </summary>
@@ -1392,7 +2149,103 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:642
+        // \include\libyuv\convert_argb.h:885
+        /// <summary>
+        /// Convert I210 to AR30.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I210ToAR30(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_ar30,
+        int dst_stride_ar30,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:898
+        /// <summary>
+        /// Convert I210 to AB30.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I210ToAB30(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_ab30,
+        int dst_stride_ab30,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:911
+        /// <summary>
+        /// Convert H210 to AR30.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int H210ToAR30(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_ar30,
+        int dst_stride_ar30,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:924
+        /// <summary>
+        /// Convert H210 to AB30.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int H210ToAB30(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_ab30,
+        int dst_stride_ab30,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:937
+        /// <summary>
+        /// Convert U210 to AR30.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int U210ToAR30(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_ar30,
+        int dst_stride_ar30,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:950
+        /// <summary>
+        /// Convert U210 to AB30.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int U210ToAB30(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        byte* dst_ab30,
+        int dst_stride_ab30,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:959
         /// <summary>
         /// BGRA little endian (argb in memory) to ARGB.
         /// </summary>
@@ -1404,7 +2257,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:651
+        // \include\libyuv\convert_argb.h:968
         /// <summary>
         /// ABGR little endian (rgba in memory) to ARGB.
         /// </summary>
@@ -1416,7 +2269,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:660
+        // \include\libyuv\convert_argb.h:977
         /// <summary>
         /// RGBA little endian (abgr in memory) to ARGB.
         /// </summary>
@@ -1428,7 +2281,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:672
+        // \include\libyuv\convert_argb.h:989
         /// <summary>
         /// Deprecated function name.
         /// RGB little endian (bgr in memory) to ARGB.
@@ -1441,7 +2294,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:681
+        // \include\libyuv\convert_argb.h:998
         /// <summary>
         /// RGB big endian (rgb in memory) to ARGB.
         /// </summary>
@@ -1453,7 +2306,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:690
+        // \include\libyuv\convert_argb.h:1007
         /// <summary>
         /// RGB big endian (rgb in memory) to RGBA.
         /// </summary>
@@ -1465,7 +2318,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:699
+        // \include\libyuv\convert_argb.h:1016
         /// <summary>
         /// RGB16 (RGBP fourcc) little endian to ARGB.
         /// </summary>
@@ -1477,7 +2330,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:708
+        // \include\libyuv\convert_argb.h:1025
         /// <summary>
         /// RGB15 (RGBO fourcc) little endian to ARGB.
         /// </summary>
@@ -1489,7 +2342,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:717
+        // \include\libyuv\convert_argb.h:1034
         /// <summary>
         /// RGB12 (R444 fourcc) little endian to ARGB.
         /// </summary>
@@ -1501,7 +2354,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:731
+        // \include\libyuv\convert_argb.h:1048
         /// <summary>
         /// Aliases
         /// Convert AR30 To ARGB.
@@ -1514,7 +2367,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:740
+        // \include\libyuv\convert_argb.h:1057
         /// <summary>
         /// Convert AR30 To ABGR.
         /// </summary>
@@ -1526,7 +2379,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:749
+        // \include\libyuv\convert_argb.h:1066
         /// <summary>
         /// Convert AR30 To AB30.
         /// </summary>
@@ -1538,7 +2391,61 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:777
+        // \include\libyuv\convert_argb.h:1075
+        /// <summary>
+        /// Convert AR64 to ARGB.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int AR64ToARGB(ushort* src_ar64,
+        int src_stride_ar64,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1087
+        /// <summary>
+        /// Convert AB64 to ABGR.
+        /// Convert AB64 to ARGB.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int AB64ToARGB(ushort* src_ab64,
+        int src_stride_ab64,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1099
+        /// <summary>
+        /// Convert AR64 to ABGR.
+        /// Convert AR64 To AB64.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int AR64ToAB64(ushort* src_ar64,
+        int src_stride_ar64,
+        ushort* dst_ab64,
+        int dst_stride_ab64,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1114
+        /// <summary>
+        /// Convert AB64 To AR64.
+        /// src_width/height provided by capture
+        /// dst_width/height for clipping determine final size.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int MJPGToARGB(byte* sample,
+        IntPtr sample_size,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int src_width,
+        int src_height,
+        int dst_width,
+        int dst_height);
+
+        // \include\libyuv\convert_argb.h:1128
         /// <summary>
         /// Convert Android420 to ARGB.
         /// </summary>
@@ -1555,7 +2462,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:791
+        // \include\libyuv\convert_argb.h:1142
         /// <summary>
         /// Convert Android420 to ABGR.
         /// </summary>
@@ -1572,7 +2479,346 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_argb.h:827
+        // \include\libyuv\convert_argb.h:1153
+        /// <summary>
+        /// Convert NV12 to RGB565.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int NV12ToRGB565(byte* src_y,
+        int src_stride_y,
+        byte* src_uv,
+        int src_stride_uv,
+        byte* dst_rgb565,
+        int dst_stride_rgb565,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1166
+        /// <summary>
+        /// Convert I422 to BGRA.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I422ToBGRA(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_bgra,
+        int dst_stride_bgra,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1192
+        /// <summary>
+        /// Convert I422 to RGBA.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I422ToRGBA(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_rgba,
+        int dst_stride_rgba,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1216
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I420ToBGRA(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_bgra,
+        int dst_stride_bgra,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1240
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I420ToRGBA(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_rgba,
+        int dst_stride_rgba,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1252
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I420ToRGB24(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_rgb24,
+        int dst_stride_rgb24,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1264
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I420ToRAW(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_raw,
+        int dst_stride_raw,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1276
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int H420ToRGB24(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_rgb24,
+        int dst_stride_rgb24,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1288
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int H420ToRAW(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_raw,
+        int dst_stride_raw,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1300
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int J420ToRGB24(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_rgb24,
+        int dst_stride_rgb24,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1312
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int J420ToRAW(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_raw,
+        int dst_stride_raw,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1324
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I420ToRGB565(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_rgb565,
+        int dst_stride_rgb565,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1336
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int J420ToRGB565(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_rgb565,
+        int dst_stride_rgb565,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1348
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int H420ToRGB565(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_rgb565,
+        int dst_stride_rgb565,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1360
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I422ToRGB565(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_rgb565,
+        int dst_stride_rgb565,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1377
+        /// <summary>
+        /// Convert I420 To RGB565 with 4x4 dither matrix (16 bytes).
+        /// Values in dither matrix from 0 to 7 recommended.
+        /// The order of the dither matrix is first byte is upper left.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I420ToRGB565Dither(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_rgb565,
+        int dst_stride_rgb565,
+        byte* dither4x4,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1389
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I420ToARGB1555(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_argb1555,
+        int dst_stride_argb1555,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1401
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I420ToARGB4444(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_argb4444,
+        int dst_stride_argb4444,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1414
+        /// <summary>
+        /// Convert I420 to AR30.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I420ToAR30(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_ar30,
+        int dst_stride_ar30,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1427
+        /// <summary>
+        /// Convert I420 to AB30.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I420ToAB30(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_ab30,
+        int dst_stride_ab30,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1440
+        /// <summary>
+        /// Convert H420 to AR30.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int H420ToAR30(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_ar30,
+        int dst_stride_ar30,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:1453
+        /// <summary>
+        /// Convert H420 to AB30.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int H420ToAB30(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_ab30,
+        int dst_stride_ab30,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_argb.h:2181
         /// <summary>
         /// Convert camera sample to ARGB with cropping, rotation and vertical flip.
         /// "sample_size" is needed to parse MJPG.
@@ -1611,7 +2857,7 @@ namespace Lennox.LibYuvSharp
         RotationMode rotation,
         uint fourcc);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:39
+        // \include\libyuv\convert_from.h:39
         /// <summary>
         /// See Also convert.h for conversions from formats to I420.
         /// Convert 8 bit YUV to 10 bit.
@@ -1632,7 +2878,27 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:55
+        // \include\libyuv\convert_from.h:57
+        /// <summary>
+        /// Convert 8 bit YUV to 12 bit.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I420ToI012(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_u,
+        int dst_stride_u,
+        ushort* dst_v,
+        int dst_stride_v,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_from.h:73
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -1651,26 +2917,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:71
-        /// <summary>
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int I420ToI444(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_y,
-        int dst_stride_y,
-        byte* dst_u,
-        int dst_stride_u,
-        byte* dst_v,
-        int dst_stride_v,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:80
+        // \include\libyuv\convert_from.h:98
         /// <summary>
         /// Copy to I400. Source can be I420, I422, I444, I400, NV12 or NV21.
         /// </summary>
@@ -1682,7 +2929,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:94
+        // \include\libyuv\convert_from.h:112
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -1699,7 +2946,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:108
+        // \include\libyuv\convert_from.h:126
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -1716,7 +2963,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:120
+        // \include\libyuv\convert_from.h:138
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -1731,7 +2978,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:132
+        // \include\libyuv\convert_from.h:150
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -1746,268 +2993,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:156
-        /// <summary>
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int I420ToBGRA(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_bgra,
-        int dst_stride_bgra,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:180
-        /// <summary>
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int I420ToRGBA(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_rgba,
-        int dst_stride_rgba,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:192
-        /// <summary>
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int I420ToRGB24(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_rgb24,
-        int dst_stride_rgb24,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:204
-        /// <summary>
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int I420ToRAW(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_raw,
-        int dst_stride_raw,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:216
-        /// <summary>
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int H420ToRGB24(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_rgb24,
-        int dst_stride_rgb24,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:228
-        /// <summary>
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int H420ToRAW(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_raw,
-        int dst_stride_raw,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:240
-        /// <summary>
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int J420ToRGB24(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_rgb24,
-        int dst_stride_rgb24,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:252
-        /// <summary>
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int J420ToRAW(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_raw,
-        int dst_stride_raw,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:264
-        /// <summary>
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int I420ToRGB565(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_rgb565,
-        int dst_stride_rgb565,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:276
-        /// <summary>
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int J420ToRGB565(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_rgb565,
-        int dst_stride_rgb565,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:288
-        /// <summary>
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int H420ToRGB565(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_rgb565,
-        int dst_stride_rgb565,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:300
-        /// <summary>
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int I422ToRGB565(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_rgb565,
-        int dst_stride_rgb565,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:317
-        /// <summary>
-        /// Convert I420 To RGB565 with 4x4 dither matrix (16 bytes).
-        /// Values in dither matrix from 0 to 7 recommended.
-        /// The order of the dither matrix is first byte is upper left.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int I420ToRGB565Dither(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_rgb565,
-        int dst_stride_rgb565,
-        byte* dither4x4,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:329
-        /// <summary>
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int I420ToARGB1555(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_argb1555,
-        int dst_stride_argb1555,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:341
-        /// <summary>
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int I420ToARGB4444(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_argb4444,
-        int dst_stride_argb4444,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:354
-        /// <summary>
-        /// Convert I420 to AR30.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int I420ToAR30(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_ar30,
-        int dst_stride_ar30,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:367
-        /// <summary>
-        /// Convert H420 to AR30.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int H420ToAR30(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_ar30,
-        int dst_stride_ar30,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\convert_from.h:383
+        // \include\libyuv\convert_from.h:195
         /// <summary>
         /// Convert I420 to specified format.
         /// "dst_sample_stride" is bytes in a row for the destination. Pass 0 if the
@@ -2026,7 +3012,7 @@ namespace Lennox.LibYuvSharp
         int height,
         uint fourcc);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:37
+        // \include\libyuv\convert_from_argb.h:37
         /// <summary>
         /// Convert ARGB To BGRA.
         /// </summary>
@@ -2038,7 +3024,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:46
+        // \include\libyuv\convert_from_argb.h:46
         /// <summary>
         /// Convert ARGB To ABGR.
         /// </summary>
@@ -2050,7 +3036,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:55
+        // \include\libyuv\convert_from_argb.h:55
         /// <summary>
         /// Convert ARGB To RGBA.
         /// </summary>
@@ -2062,7 +3048,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:68
+        // \include\libyuv\convert_from_argb.h:68
         /// <summary>
         /// Aliases
         /// Convert ABGR To AR30.
@@ -2075,7 +3061,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:77
+        // \include\libyuv\convert_from_argb.h:77
         /// <summary>
         /// Convert ARGB To AR30.
         /// </summary>
@@ -2087,8 +3073,9 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:86
+        // \include\libyuv\convert_from_argb.h:90
         /// <summary>
+        /// Aliases
         /// Convert ARGB To RGB24.
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -2099,7 +3086,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:95
+        // \include\libyuv\convert_from_argb.h:99
         /// <summary>
         /// Convert ARGB To RAW.
         /// </summary>
@@ -2111,7 +3098,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:104
+        // \include\libyuv\convert_from_argb.h:108
         /// <summary>
         /// Convert ARGB To RGB565.
         /// </summary>
@@ -2123,7 +3110,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:118
+        // \include\libyuv\convert_from_argb.h:122
         /// <summary>
         /// Convert ARGB To RGB565 with 4x4 dither matrix (16 bytes).
         /// Values in dither matrix from 0 to 7 recommended.
@@ -2140,7 +3127,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:127
+        // \include\libyuv\convert_from_argb.h:131
         /// <summary>
         /// Convert ARGB To ARGB1555.
         /// </summary>
@@ -2152,7 +3139,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:136
+        // \include\libyuv\convert_from_argb.h:140
         /// <summary>
         /// Convert ARGB To ARGB4444.
         /// </summary>
@@ -2164,7 +3151,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:149
+        // \include\libyuv\convert_from_argb.h:153
         /// <summary>
         /// Convert ARGB To I444.
         /// </summary>
@@ -2180,8 +3167,34 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:162
+        // \include\libyuv\convert_from_argb.h:162
         /// <summary>
+        /// Convert ARGB to AR64.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int ARGBToAR64(byte* src_argb,
+        int src_stride_argb,
+        ushort* dst_ar64,
+        int dst_stride_ar64,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_from_argb.h:174
+        /// <summary>
+        /// Convert ABGR to AB64.
+        /// Convert ARGB to AB64.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int ARGBToAB64(byte* src_argb,
+        int src_stride_argb,
+        ushort* dst_ab64,
+        int dst_stride_ab64,
+        int width,
+        int height);
+
+        // \include\libyuv\convert_from_argb.h:190
+        /// <summary>
+        /// Convert ABGR to AR64.
         /// Convert ARGB To I422.
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -2196,7 +3209,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:188
+        // \include\libyuv\convert_from_argb.h:216
         /// <summary>
         /// Convert ARGB to J420. (JPeg full range I420).
         /// </summary>
@@ -2212,7 +3225,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:201
+        // \include\libyuv\convert_from_argb.h:229
         /// <summary>
         /// Convert ARGB to J422.
         /// </summary>
@@ -2228,7 +3241,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:210
+        // \include\libyuv\convert_from_argb.h:238
         /// <summary>
         /// Convert ARGB to J400. (JPeg full range).
         /// </summary>
@@ -2240,7 +3253,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:219
+        // \include\libyuv\convert_from_argb.h:247
         /// <summary>
         /// Convert RGBA to J400. (JPeg full range).
         /// </summary>
@@ -2252,7 +3265,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:228
+        // \include\libyuv\convert_from_argb.h:256
         /// <summary>
         /// Convert ARGB to I400.
         /// </summary>
@@ -2264,7 +3277,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:237
+        // \include\libyuv\convert_from_argb.h:265
         /// <summary>
         /// Convert ARGB to G. (Reverse of J400toARGB, which replicates G back to ARGB)
         /// </summary>
@@ -2276,7 +3289,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:248
+        // \include\libyuv\convert_from_argb.h:276
         /// <summary>
         /// Convert ARGB To NV12.
         /// </summary>
@@ -2290,7 +3303,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:259
+        // \include\libyuv\convert_from_argb.h:287
         /// <summary>
         /// Convert ARGB To NV21.
         /// </summary>
@@ -2304,7 +3317,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:270
+        // \include\libyuv\convert_from_argb.h:298
         /// <summary>
         /// Convert ABGR To NV12.
         /// </summary>
@@ -2318,7 +3331,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:281
+        // \include\libyuv\convert_from_argb.h:309
         /// <summary>
         /// Convert ABGR To NV21.
         /// </summary>
@@ -2332,7 +3345,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:301
+        // \include\libyuv\convert_from_argb.h:318
         /// <summary>
         /// Convert ARGB To YUY2.
         /// </summary>
@@ -2344,7 +3357,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\convert_from_argb.h:310
+        // \include\libyuv\convert_from_argb.h:327
         /// <summary>
         /// Convert ARGB To UYVY.
         /// </summary>
@@ -2356,20 +3369,35 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\cpu_id.h:55
+        // \include\libyuv\convert_from_argb.h:338
+        /// <summary>
+        /// RAW to JNV21 full range NV21
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int RAWToJNV21(byte* src_raw,
+        int src_stride_raw,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_vu,
+        int dst_stride_vu,
+        int width,
+        int height);
+
+        // \include\libyuv\cpu_id.h:60
         /// <summary>
         /// Internal flag to indicate cpuid requires initialization.
         /// These flags are only valid on ARM processors.
         /// 0x8 reserved for future ARM flag.
         /// These flags are only valid on x86 processors.
         /// These flags are only valid on MIPS processors.
+        /// These flags are only valid on LOONGARCH processors.
         /// Optional init function. TestCpuFlag does an auto-init.
         /// Returns cpu_info flags.
         /// </summary>
         [DllImport(_path, SetLastError = true)]
         public static extern int InitCpuFlags();
 
-        // C:\code2\libyuv\src\include\libyuv\cpu_id.h:72
+        // \include\libyuv\cpu_id.h:77
         /// <summary>
         /// Detect CPU has SSE2 etc.
         /// Test_flag parameter should be one of kCpuHas constants above.
@@ -2379,7 +3407,13 @@ namespace Lennox.LibYuvSharp
         [DllImport(_path, SetLastError = true)]
         public static extern int ArmCpuCaps(char* cpuinfo_name);
 
-        // C:\code2\libyuv\src\include\libyuv\cpu_id.h:81
+        // \include\libyuv\cpu_id.h:79
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int MipsCpuCaps(char* cpuinfo_name);
+
+        // \include\libyuv\cpu_id.h:88
         /// <summary>
         /// For testing, allow CPU flags to be disabled.
         /// ie MaskCpuFlags(~kCpuHasSSSE3) to disable SSSE3.
@@ -2391,7 +3425,7 @@ namespace Lennox.LibYuvSharp
         [DllImport(_path, SetLastError = true)]
         public static extern int MaskCpuFlags(int enable_flags);
 
-        // C:\code2\libyuv\src\include\libyuv\cpu_id.h:112
+        // \include\libyuv\cpu_id.h:119
         /// <summary>
         /// Sets the CPU flags to |cpu_flags|, bypassing the detection code. |cpu_flags|
         /// should be a valid combination of the kCpuHas constants above and include
@@ -2416,7 +3450,7 @@ namespace Lennox.LibYuvSharp
         [DllImport(_path, SetLastError = true)]
         public static extern void CpuId(int info_eax, int info_ecx, int* cpu_info);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:49
+        // \include\libyuv\planar_functions.h:49
         /// <summary>
         /// TODO(fbarchard): Remove the following headers includes.
         /// TODO(fbarchard): Move cpu macros to row.h
@@ -2432,7 +3466,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:57
+        // \include\libyuv\planar_functions.h:57
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -2443,7 +3477,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:66
+        // \include\libyuv\planar_functions.h:66
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -2454,7 +3488,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:75
+        // \include\libyuv\planar_functions.h:75
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -2465,7 +3499,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:83
+        // \include\libyuv\planar_functions.h:83
         /// <summary>
         /// Set a plane of data to a 32 bit value.
         /// </summary>
@@ -2476,7 +3510,35 @@ namespace Lennox.LibYuvSharp
         int height,
         uint value);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:94
+        // \include\libyuv\planar_functions.h:93
+        /// <summary>
+        /// Convert a plane of tiles of 16 x H to linear.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void DetilePlane(byte* src_y,
+        int src_stride_y,
+        byte* dst_y,
+        int dst_stride_y,
+        int width,
+        int height,
+        int tile_height);
+
+        // \include\libyuv\planar_functions.h:105
+        /// <summary>
+        /// Convert a UV plane of tiles of 16 x H into linear U and V planes.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void DetileSplitUVPlane(byte* src_uv,
+        int src_stride_uv,
+        byte* dst_u,
+        int dst_stride_u,
+        byte* dst_v,
+        int dst_stride_v,
+        int width,
+        int height,
+        int tile_height);
+
+        // \include\libyuv\planar_functions.h:116
         /// <summary>
         /// Split interleaved UV plane into separate U and V planes.
         /// </summary>
@@ -2490,7 +3552,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:105
+        // \include\libyuv\planar_functions.h:127
         /// <summary>
         /// Merge separate U and V planes into one interleaved UV plane.
         /// </summary>
@@ -2504,7 +3566,79 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:114
+        // \include\libyuv\planar_functions.h:139
+        /// <summary>
+        /// Split interleaved msb UV plane into separate lsb U and V planes.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void SplitUVPlane_16(ushort* src_uv,
+        int src_stride_uv,
+        ushort* dst_u,
+        int dst_stride_u,
+        ushort* dst_v,
+        int dst_stride_v,
+        int width,
+        int height,
+        int depth);
+
+        // \include\libyuv\planar_functions.h:151
+        /// <summary>
+        /// Merge separate lsb U and V planes into one interleaved msb UV plane.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void MergeUVPlane_16(ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        ushort* dst_uv,
+        int dst_stride_uv,
+        int width,
+        int height,
+        int depth);
+
+        // \include\libyuv\planar_functions.h:161
+        /// <summary>
+        /// Convert lsb plane to msb plane
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void ConvertToMSBPlane_16(ushort* src_y,
+        int src_stride_y,
+        ushort* dst_y,
+        int dst_stride_y,
+        int width,
+        int height,
+        int depth);
+
+        // \include\libyuv\planar_functions.h:171
+        /// <summary>
+        /// Convert msb plane to lsb plane
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void ConvertToLSBPlane_16(ushort* src_y,
+        int src_stride_y,
+        ushort* dst_y,
+        int dst_stride_y,
+        int width,
+        int height,
+        int depth);
+
+        // \include\libyuv\planar_functions.h:184
+        /// <summary>
+        /// Scale U and V to half width and height and merge into interleaved UV plane.
+        /// width and height are source size, allowing odd sizes.
+        /// Use for converting I444 or I422 to NV12.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void HalfMergeUVPlane(byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_uv,
+        int dst_stride_uv,
+        int width,
+        int height);
+
+        // \include\libyuv\planar_functions.h:193
         /// <summary>
         /// Swap U and V channels in interleaved UV plane.
         /// </summary>
@@ -2516,7 +3650,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:127
+        // \include\libyuv\planar_functions.h:206
         /// <summary>
         /// Split interleaved RGB plane into separate R, G and B planes.
         /// </summary>
@@ -2532,7 +3666,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:140
+        // \include\libyuv\planar_functions.h:219
         /// <summary>
         /// Merge separate R, G and B planes into one interleaved RGB plane.
         /// </summary>
@@ -2548,7 +3682,108 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:149
+        // \include\libyuv\planar_functions.h:235
+        /// <summary>
+        /// Split interleaved ARGB plane into separate R, G, B and A planes.
+        /// dst_a can be NULL to discard alpha plane.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void SplitARGBPlane(byte* src_argb,
+        int src_stride_argb,
+        byte* dst_r,
+        int dst_stride_r,
+        byte* dst_g,
+        int dst_stride_g,
+        byte* dst_b,
+        int dst_stride_b,
+        byte* dst_a,
+        int dst_stride_a,
+        int width,
+        int height);
+
+        // \include\libyuv\planar_functions.h:251
+        /// <summary>
+        /// Merge separate R, G, B and A planes into one interleaved ARGB plane.
+        /// src_a can be NULL to fill opaque value to alpha.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void MergeARGBPlane(byte* src_r,
+        int src_stride_r,
+        byte* src_g,
+        int src_stride_g,
+        byte* src_b,
+        int src_stride_b,
+        byte* src_a,
+        int src_stride_a,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height);
+
+        // \include\libyuv\planar_functions.h:267
+        /// <summary>
+        /// Merge separate 'depth' bit R, G and B planes stored in lsb
+        /// into one interleaved XR30 plane.
+        /// depth should in range [10, 16]
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void MergeXR30Plane(ushort* src_r,
+        int src_stride_r,
+        ushort* src_g,
+        int src_stride_g,
+        ushort* src_b,
+        int src_stride_b,
+        byte* dst_ar30,
+        int dst_stride_ar30,
+        int width,
+        int height,
+        int depth);
+
+        // \include\libyuv\planar_functions.h:286
+        /// <summary>
+        /// Merge separate 'depth' bit R, G, B and A planes stored in lsb
+        /// into one interleaved AR64 plane.
+        /// src_a can be NULL to fill opaque value to alpha.
+        /// depth should in range [1, 16]
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void MergeAR64Plane(ushort* src_r,
+        int src_stride_r,
+        ushort* src_g,
+        int src_stride_g,
+        ushort* src_b,
+        int src_stride_b,
+        ushort* src_a,
+        int src_stride_a,
+        ushort* dst_ar64,
+        int dst_stride_ar64,
+        int width,
+        int height,
+        int depth);
+
+        // \include\libyuv\planar_functions.h:305
+        /// <summary>
+        /// Merge separate 'depth' bit R, G, B and A planes stored in lsb
+        /// into one interleaved ARGB plane.
+        /// src_a can be NULL to fill opaque value to alpha.
+        /// depth should in range [8, 16]
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void MergeARGB16To8Plane(ushort* src_r,
+        int src_stride_r,
+        ushort* src_g,
+        int src_stride_g,
+        ushort* src_b,
+        int src_stride_b,
+        ushort* src_a,
+        int src_stride_a,
+        byte* dst_argb,
+        int dst_stride_argb,
+        int width,
+        int height,
+        int depth);
+
+        // \include\libyuv\planar_functions.h:314
         /// <summary>
         /// Copy I400.  Supports inverting.
         /// </summary>
@@ -2560,7 +3795,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:169
+        // \include\libyuv\planar_functions.h:334
         /// <summary>
         /// Copy I422 to I422.
         /// </summary>
@@ -2580,7 +3815,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:187
+        // \include\libyuv\planar_functions.h:352
         /// <summary>
         /// Copy I444 to I444.
         /// </summary>
@@ -2600,8 +3835,30 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:200
+        // \include\libyuv\planar_functions.h:370
         /// <summary>
+        /// Copy I210 to I210.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I210Copy(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_u,
+        int dst_stride_u,
+        ushort* dst_v,
+        int dst_stride_v,
+        int width,
+        int height);
+
+        // \include\libyuv\planar_functions.h:407
+        /// <summary>
+        /// Copy NV12. Supports inverting.
+        /// Copy NV21. Supports inverting.
         /// Convert YUY2 to I422.
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -2616,7 +3873,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:213
+        // \include\libyuv\planar_functions.h:420
         /// <summary>
         /// Convert UYVY to I422.
         /// </summary>
@@ -2632,7 +3889,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:223
+        // \include\libyuv\planar_functions.h:430
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -2645,7 +3902,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:233
+        // \include\libyuv\planar_functions.h:440
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -2658,7 +3915,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:246
+        // \include\libyuv\planar_functions.h:453
         /// <summary>
         /// Convert NV21 to NV12.
         /// </summary>
@@ -2674,7 +3931,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:254
+        // \include\libyuv\planar_functions.h:461
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -2685,7 +3942,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:267
+        // \include\libyuv\planar_functions.h:474
         /// <summary>
         /// Convert I420 to I400. (calls CopyPlane ignoring u/v).
         /// </summary>
@@ -2701,7 +3958,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:288
+        // \include\libyuv\planar_functions.h:495
         /// <summary>
         /// Alias
         /// I420 mirror.
@@ -2722,7 +3979,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:301
+        // \include\libyuv\planar_functions.h:508
         /// <summary>
         /// Alias
         /// I400 mirror.  A single plane is mirrored horizontally.
@@ -2736,7 +3993,24 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:313
+        // \include\libyuv\planar_functions.h:524
+        /// <summary>
+        /// Alias
+        /// NV12 mirror.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int NV12Mirror(byte* src_y,
+        int src_stride_y,
+        byte* src_uv,
+        int src_stride_uv,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_uv,
+        int dst_stride_uv,
+        int width,
+        int height);
+
+        // \include\libyuv\planar_functions.h:536
         /// <summary>
         /// Alias
         /// ARGB mirror.
@@ -2749,70 +4023,44 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:324
+        // \include\libyuv\planar_functions.h:548
         /// <summary>
-        /// Convert NV12 to RGB565.
+        /// Alias
+        /// RGB24 mirror.
         /// </summary>
         [DllImport(_path, SetLastError = true)]
-        public static extern int NV12ToRGB565(byte* src_y,
+        public static extern int RGB24Mirror(byte* src_rgb24,
+        int src_stride_rgb24,
+        byte* dst_rgb24,
+        int dst_stride_rgb24,
+        int width,
+        int height);
+
+        // \include\libyuv\planar_functions.h:557
+        /// <summary>
+        /// Mirror a plane of data.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void MirrorPlane(byte* src_y,
         int src_stride_y,
-        byte* src_uv,
+        byte* dst_y,
+        int dst_stride_y,
+        int width,
+        int height);
+
+        // \include\libyuv\planar_functions.h:566
+        /// <summary>
+        /// Mirror a plane of UV data.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void MirrorUVPlane(byte* src_uv,
         int src_stride_uv,
-        byte* dst_rgb565,
-        int dst_stride_rgb565,
+        byte* dst_uv,
+        int dst_stride_uv,
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:338
-        /// <summary>
-        /// I422ToARGB is in convert_argb.h
-        /// Convert I422 to BGRA.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int I422ToBGRA(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_bgra,
-        int dst_stride_bgra,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:351
-        /// <summary>
-        /// Convert I422 to ABGR.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int I422ToABGR(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_abgr,
-        int dst_stride_abgr,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:364
-        /// <summary>
-        /// Convert I422 to RGBA.
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern int I422ToRGBA(byte* src_y,
-        int src_stride_y,
-        byte* src_u,
-        int src_stride_u,
-        byte* src_v,
-        int src_stride_v,
-        byte* dst_rgba,
-        int dst_stride_rgba,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:375
+        // \include\libyuv\planar_functions.h:577
         /// <summary>
         /// Alias
         /// </summary>
@@ -2824,7 +4072,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:391
+        // \include\libyuv\planar_functions.h:593
         /// <summary>
         /// Draw a rectangle into I420.
         /// </summary>
@@ -2843,7 +4091,7 @@ namespace Lennox.LibYuvSharp
         int value_u,
         int value_v);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:401
+        // \include\libyuv\planar_functions.h:603
         /// <summary>
         /// Draw a rectangle into ARGB.
         /// </summary>
@@ -2856,7 +4104,7 @@ namespace Lennox.LibYuvSharp
         int height,
         uint value);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:410
+        // \include\libyuv\planar_functions.h:612
         /// <summary>
         /// Convert ARGB to gray scale ARGB.
         /// </summary>
@@ -2868,7 +4116,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:419
+        // \include\libyuv\planar_functions.h:621
         /// <summary>
         /// Make a rectangle of ARGB gray scale.
         /// </summary>
@@ -2880,7 +4128,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:428
+        // \include\libyuv\planar_functions.h:630
         /// <summary>
         /// Make a rectangle of ARGB Sepia tone.
         /// </summary>
@@ -2892,7 +4140,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:443
+        // \include\libyuv\planar_functions.h:645
         /// <summary>
         /// Apply a matrix rotation to each ARGB pixel.
         /// matrix_argb is 4 signed ARGB values. -128 to 127 representing -2 to 2.
@@ -2910,7 +4158,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:458
+        // \include\libyuv\planar_functions.h:660
         /// <summary>
         /// Deprecated. Use ARGBColorMatrix instead.
         /// Apply a matrix rotation to each ARGB pixel.
@@ -2928,7 +4176,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:469
+        // \include\libyuv\planar_functions.h:671
         /// <summary>
         /// Apply a color table each ARGB pixel.
         /// Table contains 256 ARGB values.
@@ -2942,7 +4190,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:480
+        // \include\libyuv\planar_functions.h:682
         /// <summary>
         /// Apply a color table each ARGB pixel but preserve destination alpha.
         /// Table contains 256 ARGB values.
@@ -2956,7 +4204,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:492
+        // \include\libyuv\planar_functions.h:694
         /// <summary>
         /// Apply a luma/color table each ARGB pixel but preserve destination alpha.
         /// Table contains 32768 values indexed by [Y][C] where 7 it 7 bit luma from
@@ -2971,7 +4219,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:509
+        // \include\libyuv\planar_functions.h:711
         /// <summary>
         /// Apply a 3 term polynomial to ARGB values.
         /// poly points to a 4x4 matrix.  The first row is constants.  The 2nd row is
@@ -2990,7 +4238,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:520
+        // \include\libyuv\planar_functions.h:722
         /// <summary>
         /// Convert plane of 16 bit shorts to half floats.
         /// Source values are multiplied by scale before storing as half float.
@@ -3004,14 +4252,14 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:524
+        // \include\libyuv\planar_functions.h:726
         /// <summary>
         /// Convert a buffer of bytes to floats, scale the values and store as floats.
         /// </summary>
         [DllImport(_path, SetLastError = true)]
         public static extern int ByteToFloat(byte* src_y, float* dst_y, float scale, int width);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:539
+        // \include\libyuv\planar_functions.h:741
         /// <summary>
         /// Quantize a rectangle of ARGB. Alpha unaffected.
         /// scale is a 16 bit fractional fixed point scaler between 0 and 65535.
@@ -3029,7 +4277,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:557
+        // \include\libyuv\planar_functions.h:759
         /// <summary>
         /// Copy Alpha channel of ARGB to alpha of ARGB.
         /// </summary>
@@ -3041,7 +4289,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:566
+        // \include\libyuv\planar_functions.h:768
         /// <summary>
         /// Extract the alpha channel from ARGB.
         /// </summary>
@@ -3053,7 +4301,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:575
+        // \include\libyuv\planar_functions.h:777
         /// <summary>
         /// Copy Y channel to Alpha of ARGB.
         /// </summary>
@@ -3065,14 +4313,14 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:584
+        // \include\libyuv\planar_functions.h:786
         /// <summary>
         /// Get function to Alpha Blend ARGB pixels and store to destination.
         /// </summary>
         [DllImport(_path, SetLastError = true)]
         public static extern void* GetARGBBlend();
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:597
+        // \include\libyuv\planar_functions.h:799
         /// <summary>
         /// Alpha Blend ARGB images and store to destination.
         /// Source is pre-multiplied by alpha using ARGBAttenuate.
@@ -3088,7 +4336,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:611
+        // \include\libyuv\planar_functions.h:813
         /// <summary>
         /// Alpha Blend plane and store to destination.
         /// Source is not pre-multiplied by alpha.
@@ -3105,7 +4353,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:638
+        // \include\libyuv\planar_functions.h:840
         /// <summary>
         /// Alpha Blend YUV images and store to destination.
         /// Source is not pre-multiplied by alpha.
@@ -3135,7 +4383,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:649
+        // \include\libyuv\planar_functions.h:851
         /// <summary>
         /// Multiply ARGB image by ARGB image. Shifted down by 8. Saturates to 255.
         /// </summary>
@@ -3149,7 +4397,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:660
+        // \include\libyuv\planar_functions.h:862
         /// <summary>
         /// Add ARGB image with ARGB image. Saturates to 255.
         /// </summary>
@@ -3163,7 +4411,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:671
+        // \include\libyuv\planar_functions.h:873
         /// <summary>
         /// Subtract ARGB image (argb1) from ARGB image (argb0). Saturates to 0.
         /// </summary>
@@ -3177,7 +4425,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:684
+        // \include\libyuv\planar_functions.h:886
         /// <summary>
         /// Convert I422 to YUY2.
         /// </summary>
@@ -3193,7 +4441,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:697
+        // \include\libyuv\planar_functions.h:899
         /// <summary>
         /// Convert I422 to UYVY.
         /// </summary>
@@ -3209,7 +4457,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:706
+        // \include\libyuv\planar_functions.h:908
         /// <summary>
         /// Convert unattentuated ARGB to preattenuated ARGB.
         /// </summary>
@@ -3221,7 +4469,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:715
+        // \include\libyuv\planar_functions.h:917
         /// <summary>
         /// Convert preattentuated ARGB to unattenuated ARGB.
         /// </summary>
@@ -3233,7 +4481,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:726
+        // \include\libyuv\planar_functions.h:928
         /// <summary>
         /// Internal function - do not call directly.
         /// Computes table of cumulative sum for image where the value is the sum
@@ -3247,7 +4495,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:743
+        // \include\libyuv\planar_functions.h:945
         /// <summary>
         /// Blur ARGB image.
         /// dst_cumsum table of width * (height + 1) * 16 bytes aligned to
@@ -3267,7 +4515,23 @@ namespace Lennox.LibYuvSharp
         int height,
         int radius);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:753
+        // \include\libyuv\planar_functions.h:958
+        /// <summary>
+        /// Gaussian 5x5 blur a float plane.
+        /// Coefficients of 1, 4, 6, 4, 1.
+        /// Each destination pixel is a blur of the 5x5
+        /// pixels from the source.
+        /// Source edges are clamped.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int GaussPlane_F32(float* src,
+        int src_stride,
+        float* dst,
+        int dst_stride,
+        int width,
+        int height);
+
+        // \include\libyuv\planar_functions.h:968
         /// <summary>
         /// Multiply ARGB image by ARGB value.
         /// </summary>
@@ -3280,7 +4544,7 @@ namespace Lennox.LibYuvSharp
         int height,
         uint value);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:768
+        // \include\libyuv\planar_functions.h:983
         /// <summary>
         /// Interpolate between two images using specified amount of interpolation
         /// (0 to 255) and store to destination.
@@ -3298,7 +4562,7 @@ namespace Lennox.LibYuvSharp
         int height,
         int interpolation);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:781
+        // \include\libyuv\planar_functions.h:996
         /// <summary>
         /// Interpolate between two ARGB images using specified amount of interpolation
         /// Internally calls InterpolatePlane with width * 4 (bpp).
@@ -3314,7 +4578,7 @@ namespace Lennox.LibYuvSharp
         int height,
         int interpolation);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:807
+        // \include\libyuv\planar_functions.h:1022
         /// <summary>
         /// Interpolate between two YUV images using specified amount of interpolation
         /// Internally calls InterpolatePlane on each plane where the U and V planes
@@ -3343,7 +4607,7 @@ namespace Lennox.LibYuvSharp
         int height,
         int interpolation);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:816
+        // \include\libyuv\planar_functions.h:1031
         /// <summary>
         /// Row function for copying pixels from a source with a slope to a row
         /// of destination. Useful for scaling, rotation, mirror, texture mapping.
@@ -3355,7 +4619,7 @@ namespace Lennox.LibYuvSharp
         float* uv_dudv,
         int width);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:823
+        // \include\libyuv\planar_functions.h:1038
         /// <summary>
         /// TODO(fbarchard): Move ARGBAffineRow_SSE2 to row.h
         /// </summary>
@@ -3366,10 +4630,10 @@ namespace Lennox.LibYuvSharp
         float* uv_dudv,
         int width);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:834
+        // \include\libyuv\planar_functions.h:1049
         /// <summary>
         /// Shuffle ARGB channel order.  e.g. BGRA to ARGB.
-        /// shuffler is 16 bytes and must be aligned.
+        /// shuffler is 16 bytes.
         /// </summary>
         [DllImport(_path, SetLastError = true)]
         public static extern int ARGBShuffle(byte* src_bgra,
@@ -3380,7 +4644,21 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:843
+        // \include\libyuv\planar_functions.h:1060
+        /// <summary>
+        /// Shuffle AR64 channel order.  e.g. AR64 to AB64.
+        /// shuffler is 16 bytes.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int AR64Shuffle(ushort* src_ar64,
+        int src_stride_ar64,
+        ushort* dst_ar64,
+        int dst_stride_ar64,
+        byte* shuffler,
+        int width,
+        int height);
+
+        // \include\libyuv\planar_functions.h:1069
         /// <summary>
         /// Sobel ARGB effect with planar output.
         /// </summary>
@@ -3392,7 +4670,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:852
+        // \include\libyuv\planar_functions.h:1078
         /// <summary>
         /// Sobel ARGB effect.
         /// </summary>
@@ -3404,7 +4682,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\planar_functions.h:861
+        // \include\libyuv\planar_functions.h:1087
         /// <summary>
         /// Sobel ARGB effect w/ Sobel X, Sobel, Sobel Y in ARGB.
         /// </summary>
@@ -3416,7 +4694,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\rotate.h:49
+        // \include\libyuv\rotate.h:49
         /// <summary>
         /// Supported rotation.
         /// Deprecated.
@@ -3439,7 +4717,28 @@ namespace Lennox.LibYuvSharp
         int height,
         RotationMode mode);
 
-        // C:\code2\libyuv\src\include\libyuv\rotate.h:67
+        // \include\libyuv\rotate.h:67
+        /// <summary>
+        /// Rotate I422 frame.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I422Rotate(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_u,
+        int dst_stride_u,
+        byte* dst_v,
+        int dst_stride_v,
+        int width,
+        int height,
+        RotationMode mode);
+
+        // \include\libyuv\rotate.h:85
         /// <summary>
         /// Rotate I444 frame.
         /// </summary>
@@ -3460,7 +4759,7 @@ namespace Lennox.LibYuvSharp
         int height,
         RotationMode mode);
 
-        // C:\code2\libyuv\src\include\libyuv\rotate.h:83
+        // \include\libyuv\rotate.h:101
         /// <summary>
         /// Rotate NV12 input and store in I420.
         /// </summary>
@@ -3479,7 +4778,30 @@ namespace Lennox.LibYuvSharp
         int height,
         RotationMode mode);
 
-        // C:\code2\libyuv\src\include\libyuv\rotate.h:93
+        // \include\libyuv\rotate.h:121
+        /// <summary>
+        /// Convert Android420 to I420 with rotation.
+        /// "rotation" can be 0, 90, 180 or 270.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int Android420ToI420Rotate(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        int src_pixel_stride_uv,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_u,
+        int dst_stride_u,
+        byte* dst_v,
+        int dst_stride_v,
+        int width,
+        int height,
+        RotationMode rotation);
+
+        // \include\libyuv\rotate.h:131
         /// <summary>
         /// Rotate a plane by 0, 90, 180, or 270.
         /// </summary>
@@ -3492,7 +4814,7 @@ namespace Lennox.LibYuvSharp
         int height,
         RotationMode mode);
 
-        // C:\code2\libyuv\src\include\libyuv\rotate.h:102
+        // \include\libyuv\rotate.h:140
         /// <summary>
         /// Rotate planes by 90, 180, 270. Deprecated.
         /// </summary>
@@ -3504,7 +4826,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\rotate.h:110
+        // \include\libyuv\rotate.h:148
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -3515,7 +4837,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\rotate.h:118
+        // \include\libyuv\rotate.h:156
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -3526,41 +4848,30 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\rotate.h:128
-        /// <summary>
-        /// </summary>
-        [DllImport(_path, SetLastError = true)]
-        public static extern void RotateUV90(byte* src,
-        int src_stride,
-        byte* dst_a,
-        int dst_stride_a,
-        byte* dst_b,
-        int dst_stride_b,
-        int width,
-        int height);
-
-        // C:\code2\libyuv\src\include\libyuv\rotate.h:142
+        // \include\libyuv\rotate.h:172
         /// <summary>
         /// Rotations for when U and V are interleaved.
-        /// These functions take one input pointer and
+        /// These functions take one UV input pointer and
         /// split the data into two buffers while
-        /// rotating them. Deprecated.
+        /// rotating them.
+        /// width and height expected to be half size for NV12.
         /// </summary>
         [DllImport(_path, SetLastError = true)]
-        public static extern void RotateUV180(byte* src,
-        int src_stride,
-        byte* dst_a,
-        int dst_stride_a,
-        byte* dst_b,
-        int dst_stride_b,
+        public static extern int SplitRotateUV(byte* src_uv,
+        int src_stride_uv,
+        byte* dst_u,
+        int dst_stride_u,
+        byte* dst_v,
+        int dst_stride_v,
         int width,
-        int height);
+        int height,
+        RotationMode mode);
 
-        // C:\code2\libyuv\src\include\libyuv\rotate.h:152
+        // \include\libyuv\rotate.h:182
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
-        public static extern void RotateUV270(byte* src,
+        public static extern void SplitRotateUV90(byte* src,
         int src_stride,
         byte* dst_a,
         int dst_stride_a,
@@ -3569,7 +4880,33 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\rotate.h:164
+        // \include\libyuv\rotate.h:192
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void SplitRotateUV180(byte* src,
+        int src_stride,
+        byte* dst_a,
+        int dst_stride_a,
+        byte* dst_b,
+        int dst_stride_b,
+        int width,
+        int height);
+
+        // \include\libyuv\rotate.h:202
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void SplitRotateUV270(byte* src,
+        int src_stride,
+        byte* dst_a,
+        int dst_stride_a,
+        byte* dst_b,
+        int dst_stride_b,
+        int width,
+        int height);
+
+        // \include\libyuv\rotate.h:214
         /// <summary>
         /// The 90 and 270 functions are based on transposes.
         /// Doing a transpose with reversing the read/write
@@ -3584,11 +4921,11 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\rotate.h:174
+        // \include\libyuv\rotate.h:224
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
-        public static extern void TransposeUV(byte* src,
+        public static extern void SplitTransposeUV(byte* src,
         int src_stride,
         byte* dst_a,
         int dst_stride_a,
@@ -3597,7 +4934,7 @@ namespace Lennox.LibYuvSharp
         int width,
         int height);
 
-        // C:\code2\libyuv\src\include\libyuv\rotate_argb.h:29
+        // \include\libyuv\rotate_argb.h:29
         /// <summary>
         /// Rotate ARGB frame
         /// </summary>
@@ -3610,7 +4947,7 @@ namespace Lennox.LibYuvSharp
         int src_height,
         RotationMode mode);
 
-        // C:\code2\libyuv\src\include\libyuv\scale.h:38
+        // \include\libyuv\scale.h:38
         /// <summary>
         /// Supported filtering.
         /// Scale a YUV plane.
@@ -3626,7 +4963,7 @@ namespace Lennox.LibYuvSharp
         int dst_height,
         FilterMode filtering);
 
-        // C:\code2\libyuv\src\include\libyuv\scale.h:49
+        // \include\libyuv\scale.h:49
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -3640,7 +4977,22 @@ namespace Lennox.LibYuvSharp
         int dst_height,
         FilterMode filtering);
 
-        // C:\code2\libyuv\src\include\libyuv\scale.h:78
+        // \include\libyuv\scale.h:61
+        /// <summary>
+        /// Sample is expected to be in the low 12 bits.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern void ScalePlane_12(ushort* src,
+        int src_stride,
+        int src_width,
+        int src_height,
+        ushort* dst,
+        int dst_stride,
+        int dst_width,
+        int dst_height,
+        FilterMode filtering);
+
+        // \include\libyuv\scale.h:90
         /// <summary>
         /// Scales a YUV 4:2:0 image from the src width and height to the
         /// dst width and height.
@@ -3671,7 +5023,7 @@ namespace Lennox.LibYuvSharp
         int dst_height,
         FilterMode filtering);
 
-        // C:\code2\libyuv\src\include\libyuv\scale.h:97
+        // \include\libyuv\scale.h:109
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -3693,7 +5045,29 @@ namespace Lennox.LibYuvSharp
         int dst_height,
         FilterMode filtering);
 
-        // C:\code2\libyuv\src\include\libyuv\scale.h:126
+        // \include\libyuv\scale.h:128
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I420Scale_12(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        int src_width,
+        int src_height,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_u,
+        int dst_stride_u,
+        ushort* dst_v,
+        int dst_stride_v,
+        int dst_width,
+        int dst_height,
+        FilterMode filtering);
+
+        // \include\libyuv\scale.h:157
         /// <summary>
         /// Scales a YUV 4:4:4 image from the src width and height to the
         /// dst width and height.
@@ -3724,7 +5098,7 @@ namespace Lennox.LibYuvSharp
         int dst_height,
         FilterMode filtering);
 
-        // C:\code2\libyuv\src\include\libyuv\scale.h:145
+        // \include\libyuv\scale.h:176
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -3746,7 +5120,131 @@ namespace Lennox.LibYuvSharp
         int dst_height,
         FilterMode filtering);
 
-        // C:\code2\libyuv\src\include\libyuv\scale.h:166
+        // \include\libyuv\scale.h:195
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I444Scale_12(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        int src_width,
+        int src_height,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_u,
+        int dst_stride_u,
+        ushort* dst_v,
+        int dst_stride_v,
+        int dst_width,
+        int dst_height,
+        FilterMode filtering);
+
+        // \include\libyuv\scale.h:223
+        /// <summary>
+        /// Scales a YUV 4:2:2 image from the src width and height to the
+        /// dst width and height.
+        /// If filtering is kFilterNone, a simple nearest-neighbor algorithm is
+        /// used. This produces basic (blocky) quality at the fastest speed.
+        /// If filtering is kFilterBilinear, interpolation is used to produce a better
+        /// quality image, at the expense of speed.
+        /// If filtering is kFilterBox, averaging is used to produce ever better
+        /// quality image, at further expense of speed.
+        /// Returns 0 if successful.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I422Scale(byte* src_y,
+        int src_stride_y,
+        byte* src_u,
+        int src_stride_u,
+        byte* src_v,
+        int src_stride_v,
+        int src_width,
+        int src_height,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_u,
+        int dst_stride_u,
+        byte* dst_v,
+        int dst_stride_v,
+        int dst_width,
+        int dst_height,
+        FilterMode filtering);
+
+        // \include\libyuv\scale.h:242
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I422Scale_16(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        int src_width,
+        int src_height,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_u,
+        int dst_stride_u,
+        ushort* dst_v,
+        int dst_stride_v,
+        int dst_width,
+        int dst_height,
+        FilterMode filtering);
+
+        // \include\libyuv\scale.h:261
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int I422Scale_12(ushort* src_y,
+        int src_stride_y,
+        ushort* src_u,
+        int src_stride_u,
+        ushort* src_v,
+        int src_stride_v,
+        int src_width,
+        int src_height,
+        ushort* dst_y,
+        int dst_stride_y,
+        ushort* dst_u,
+        int dst_stride_u,
+        ushort* dst_v,
+        int dst_stride_v,
+        int dst_width,
+        int dst_height,
+        FilterMode filtering);
+
+        // \include\libyuv\scale.h:286
+        /// <summary>
+        /// Scales an NV12 image from the src width and height to the
+        /// dst width and height.
+        /// If filtering is kFilterNone, a simple nearest-neighbor algorithm is
+        /// used. This produces basic (blocky) quality at the fastest speed.
+        /// If filtering is kFilterBilinear, interpolation is used to produce a better
+        /// quality image, at the expense of speed.
+        /// kFilterBox is not supported for the UV channel and will be treated as
+        /// bilinear.
+        /// Returns 0 if successful.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int NV12Scale(byte* src_y,
+        int src_stride_y,
+        byte* src_uv,
+        int src_stride_uv,
+        int src_width,
+        int src_height,
+        byte* dst_y,
+        int dst_stride_y,
+        byte* dst_uv,
+        int dst_stride_uv,
+        int dst_width,
+        int dst_height,
+        FilterMode filtering);
+
+        // \include\libyuv\scale.h:307
         /// <summary>
         /// Legacy API.  Deprecated.
         /// </summary>
@@ -3769,14 +5267,14 @@ namespace Lennox.LibYuvSharp
         int dst_height,
         int interpolate);
 
-        // C:\code2\libyuv\src\include\libyuv\scale.h:170
+        // \include\libyuv\scale.h:311
         /// <summary>
         /// For testing, allow disabling of specialized scalers.
         /// </summary>
         [DllImport(_path, SetLastError = true)]
         public static extern void SetUseReferenceImpl(int use);
 
-        // C:\code2\libyuv\src\include\libyuv\scale_argb.h:30
+        // \include\libyuv\scale_argb.h:30
         /// <summary>
         /// </summary>
         [DllImport(_path, SetLastError = true)]
@@ -3790,7 +5288,7 @@ namespace Lennox.LibYuvSharp
         int dst_height,
         FilterMode filtering);
 
-        // C:\code2\libyuv\src\include\libyuv\scale_argb.h:46
+        // \include\libyuv\scale_argb.h:46
         /// <summary>
         /// Clipped scale takes destination rectangle coordinates for clip values.
         /// </summary>
@@ -3809,7 +5307,7 @@ namespace Lennox.LibYuvSharp
         int clip_height,
         FilterMode filtering);
 
-        // C:\code2\libyuv\src\include\libyuv\scale_argb.h:68
+        // \include\libyuv\scale_argb.h:68
         /// <summary>
         /// Scale with YUV conversion to ARGB and clipping.
         /// </summary>
@@ -3833,5 +5331,55 @@ namespace Lennox.LibYuvSharp
         int clip_width,
         int clip_height,
         FilterMode filtering);
+
+        // \include\libyuv\scale_rgb.h:34
+        /// <summary>
+        /// RGB can be RAW, RGB24 or YUV24
+        /// RGB scales 24 bit images by converting a row at a time to ARGB
+        /// and using ARGB row functions to scale, then convert to RGB.
+        /// TODO(fbarchard): Allow input/output formats to be specified.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int RGBScale(byte* src_rgb,
+        int src_stride_rgb,
+        int src_width,
+        int src_height,
+        byte* dst_rgb,
+        int dst_stride_rgb,
+        int dst_width,
+        int dst_height,
+        FilterMode filtering);
+
+        // \include\libyuv\scale_uv.h:30
+        /// <summary>
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int UVScale(byte* src_uv,
+        int src_stride_uv,
+        int src_width,
+        int src_height,
+        byte* dst_uv,
+        int dst_stride_uv,
+        int dst_width,
+        int dst_height,
+        FilterMode filtering);
+
+        // \include\libyuv\scale_uv.h:43
+        /// <summary>
+        /// Scale a 16 bit UV image.
+        /// This function is currently incomplete, it can't handle all cases.
+        /// </summary>
+        [DllImport(_path, SetLastError = true)]
+        public static extern int UVScale_16(ushort* src_uv,
+        int src_stride_uv,
+        int src_width,
+        int src_height,
+        ushort* dst_uv,
+        int dst_stride_uv,
+        int dst_width,
+        int dst_height,
+        FilterMode filtering);
+
+
     }
 }

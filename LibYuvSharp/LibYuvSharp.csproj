@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461;netcoreapp2.0</TargetFrameworks>
     <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
@@ -6,11 +6,27 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>Lennox.LibYuvSharp</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Version>1.1.2</Version>
+    <Version>2.0.0</Version>
+    <PackageReleaseNotes>2.0.0 moves to the latest libyuv version.
+
+* JPEG/MJPEG decoding is now included using statically linked libjpeg-turbo 3.2.0.
+  For full-range JPEG RGB output, use MJPGToI420 followed by J420ToARGB;
+  upstream MJPGToARGB uses a limited-range conversion.
+* M420ToI420, M420ToARGB, GetARGBBlend, ARGBToG, and
+  SetUseReferenceImpl were removed upstream. Convert M420 input to a supported layout before calling
+  libyuv. ARGBToJ400 is available for full-range grayscale conversion.
+* RotateUV90, RotateUV180, RotateUV270, TransposeUV, and NV21ToNV12
+  remain available as aliases to their current native equivalents.
+* ScalePlane and ScalePlane_16 now return the native status code (int).
+  Native size_t parameters use UIntPtr; native char* parameters use
+  sbyte*, and signed 8-bit data uses sbyte* rather than byte*.
+* Matrix APIs accept opaque void* pointers to native YuvConstants or
+  ArgbConstants structures. These must refer to valid native structures;
+  their SIMD layout is platform specific.</PackageReleaseNotes>
 
     <PackageId>Lennox.LibYuvSharp</PackageId>
     <Title>LibYuvSharp</Title>
-    <PackageDescription>LibYuvSharp is a library for .net framework and dotnet core that provides a basic calling interface into libyuv</PackageDescription>
+    <PackageDescription>LibYuvSharp provides an interface to Google's libyuv library for SIMD accelerated color space conversions for dotnet.</PackageDescription>
     <Authors>Joseph Lennox</Authors>
     <Copyright>Joseph Lennox</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -26,14 +42,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="lib\runtimes\win-x64\native\**"> <!-- PackagePath="runtimes">-->
+    <Content Include="lib\runtimes\win-x64\native\*.dll">
       <PackagePath>runtimes/win-x64/native</PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
     </Content>
-    <Content Include="lib/Lennox.LibYuvSharp.targets">
+    <Content Include="lib\Lennox.LibYuvSharp.targets">
       <PackagePath>lib/netstandard2.0;lib/net461;build/net461;build</PackagePath>
       <Pack>true</Pack>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\native\LICENSE;..\native\PATENTS;..\native\AUTHORS" Pack="true" PackagePath="licenses/libyuv" />
+    <None Include="..\native\libjpeg-turbo\*" Pack="true" PackagePath="licenses/libjpeg-turbo" />
   </ItemGroup>
 </Project>

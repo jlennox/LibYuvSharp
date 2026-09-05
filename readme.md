@@ -1,50 +1,65 @@
 # About
 
-LibYuvSharp is a library for .net framework and dotnet core that provides a
-basic calling interface into [libyuv](https://chromium.googlesource.com/libyuv/libyuv/)
+LibYuvSharp provides a calling interface to Google's
+[libyuv](https://chromium.googlesource.com/libyuv/libyuv/) for SIMD accelerated
+color space conversions in dotnet.
 
-libyuv is a highly efficient SIMD accelerated library for doing color space
-conversions on the CPU.
-
-The precompiled Window's dll is included with the nuget package/repo. The
-source used was from commit `53e014c99d6f59647c57b70b3fa65ad3dd59ce08` (2019-11-07).
+The NuGet package and repository include a Windows x64 DLL built from **libyuv
+1971**, commit `af1aaca84027a69ab25f251ade1bf1714b180d89` (2026-09-04).
+Upstream has no release tags; this is the latest main revision checked on that
+date. JPEG/MJPEG decoding is included through libjpeg-turbo 3.2.0.
 
 # How to use
 
-* [Add the nuget package.](https://www.nuget.org/packages/Lennox.LibYuvSharp)
-* [Reference the sample code.](LibYuvSharp.Test/LibYuvTests.cs)
+* [Add the NuGet package.](https://www.nuget.org/packages/Lennox.LibYuvSharp)
+* [Reference the sample code and tests.](LibYuvSharp.Test/LibYuvTests.cs)
+
+# Building the Windows DLL and bindings
+
+Install Git, CMake 3.16 or newer, Ninja, NASM, a current x64 C++ compiler, and a .NET SDK
+that can build the existing project targets. Use an x64 developer command prompt,
+then run:
+
+```bat
+build-libyuv.bat
+```
+
+Alternatively, put an LLVM-MinGW toolchain's `bin` directory on PATH and run:
+
+```bat
+set CC=x86_64-w64-mingw32-clang
+set CXX=x86_64-w64-mingw32-clang++
+build-libyuv.bat
+```
+
+The bundled DLL was built with LLVM-MinGW 20260826 (Clang 23.1.0), in Release
+mode with libjpeg-turbo and compiler runtime libraries linked statically. It
+requires only Windows system/UCRT DLLs. The script fetches the pinned upstream
+commit into the ignored `artifacts` directory, builds `libyuv_internal.dll`,
+copies upstream license files, and runs the existing C# NUnit code generator.
+Use fresh `artifacts/native-release` and `artifacts/jpeg-release` directories when changing compilers.
+
+To regenerate only the bindings after building the DLL:
+
+```bat
+set LIBYUV_SOURCE=%CD%\artifacts\libyuv
+dotnet build LibYuvSharp.Test\LibYuvSharp.Tests.csproj -c Release -p:Platform=x64
+dotnet vstest LibYuvSharp.Test\bin\x64\Release\netcoreapp3.0\LibYuvSharp.Tests.dll /Tests:Lennox.LibYuvSharp.Tests.CodeGeneration.GenerateClassDefinition
+set LIBYUV_SOURCE=
+```
+
+The generator updates `LibYuvSharp/LibYuv.cs` using public header declarations
+and actual DLL exports.
+
+```bat
+dotnet test LibYuvSharp.Test\LibYuvSharp.Tests.csproj -c Release -p:Platform=x64
+dotnet pack LibYuvSharp\LibYuvSharp.csproj -c Release -p:Platform=x64
+```
 
 # Welcome contributions
 
-Including the libraries for linux and mac os would be great if anyone would
-like to contribute them.
+Native libraries for Linux and macOS are welcome.
 
-# How to compile LibYuv as a Window's dll
+# Third-party notices
 
-Begin with the [official instructions](https://github.com/frankpapenmeier/libyuv/blob/master/docs/getting_started.md)
-
-Fix [a bug in `src/BUILD.gn`](https://bugs.chromium.org/p/libyuv/issues/detail?id=849) if it's not yet fixed:
-
-change:
-```
-  if (!is_ios) {
-    defines += [ "HAVE_JPEG" ]
-```
-
-to:
-```
-  if (!is_ios && !libyuv_disable_jpeg) {
-    defines += [ "HAVE_JPEG" ]
-```
-
-Change:
-`static_library("libyuv_internal") {`
-to
-`shared_library("libyuv_internal") {`
-
-Update the `defines` declaration nested under `shared_library("libyuv_internal")` to include LIBYUV_BUILDING_SHARED_LIBRARY:
-`defines = [ "LIBYUV_BUILDING_SHARED_LIBRARY" ]`
-
-Fix [a bug in `convert_from.h`](https://bugs.chromium.org/p/libyuv/issues/detail?id=850) if not yet fixed:
-
-Inside `src/` run: `call gn gen out\Release "--args=is_debug=false libyuv_disable_jpeg=true target_cpu=\"x64\""`
+This software is based in part on the work of the Independent JPEG Group.

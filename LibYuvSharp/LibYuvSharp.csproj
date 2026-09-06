@@ -1,14 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461;netcoreapp2.0</TargetFrameworks>
-    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
-    <Platforms>x64</Platforms>
+    <Platforms>AnyCPU;x64;ARM64</Platforms>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>Lennox.LibYuvSharp</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Version>2.0.0</Version>
     <PackageReleaseNotes>2.0.0 moves to the latest libyuv version.
 
+* Native builds and NuGet runtime assets for Windows, Linux, macOS and Android,
+  on x64 and ARM64.
 * JPEG/MJPEG decoding is now included using statically linked libjpeg-turbo 3.2.0.
   For full-range JPEG RGB output, use MJPGToI420 followed by J420ToARGB;
   upstream MJPGToARGB uses a limited-range conversion.
@@ -42,13 +44,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="lib\runtimes\win-x64\native\*.dll">
-      <PackagePath>runtimes/win-x64/native</PackagePath>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="lib\runtimes\**\*.dll;lib\runtimes\**\*.so;lib\runtimes\**\*.dylib">
+      <PackagePath>runtimes/</PackagePath>
       <Pack>true</Pack>
     </Content>
     <Content Include="lib\Lennox.LibYuvSharp.targets">
-      <PackagePath>lib/netstandard2.0;lib/net461;build/net461;build</PackagePath>
+      <PackagePath>build/net461;buildTransitive</PackagePath>
       <Pack>true</Pack>
     </Content>
   </ItemGroup>

@@ -1,0 +1,167 @@
+name: Build native libraries
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { rid: win-x64, os: windows-2022, compiler: x86_64 }
+          - { rid: win-arm64, os: windows-2022, compiler: aarch64 }
+          - { rid: linux-x64, os: ubuntu-22.04 }
+          - { rid: linux-arm64, os: ubuntu-22.04-arm }
+          - { rid: osx-x64, os: macos-15-intel }
+          - { rid: osx-arm64, os: macos-15 }
+          - { rid: android-x64, os: ubuntu-22.04 }
+          - { rid: android-arm64, os: ubuntu-22.04 }
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install Linux tools
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y ninja-build nasm clang
+      - name: Install macOS tools
+        if: runner.os == 'macOS'
+        run: brew install ninja nasm
+      - name: Install Windows cross-compiler
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force artifacts/tools | Out-Null
+          curl.exe -fL https://github.com/mstorsjo/llvm-mingw/releases/download/20260826/llvm-mingw-20260826-ucrt-x86_64.zip -o artifacts/tools/llvm.zip
+          if ($LASTEXITCODE) { throw 'LLVM download failed' }
+          Expand-Archive artifacts/tools/llvm.zip artifacts/tools
+          curl.exe -fL https://www.nasm.us/pub/nasm/releasebuilds/3.02/win64/nasm-3.02-win64.zip -o artifacts/tools/nasm.zip
+          if ($LASTEXITCODE) { throw 'NASM download failed' }
+          Expand-Archive artifacts/tools/nasm.zip artifacts/tools
+          "$pwd/artifacts/tools/llvm-mingw-20260826-ucrt-x86_64/bin" >> $env:GITHUB_PATH
+          "$pwd/artifacts/tools/nasm-3.02" >> $env:GITHUB_PATH
+      - name: Install Android NDK
+        if: startsWith(matrix.rid, 'android-')
+        run: '"$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "ndk;28.2.13676358"'
+      - name: Build Windows
+        if: runner.os == 'Windows'
+        run: >-
+          cmake -DRID=${{ matrix.rid }}
+          -DCMAKE_C_COMPILER=${{ matrix.compiler }}-w64-mingw32-clang
+          -DCMAKE_CXX_COMPILER=${{ matrix.compiler }}-w64-mingw32-clang++
+          -P native/build.cmake
+      - name: Build Linux or macOS
+        if: runner.os != 'Windows' && !startsWith(matrix.rid, 'android-')
+        run: cmake -DRID=${{ matrix.rid }} -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -P native/build.cmake
+      - name: Build Android
+        if: startsWith(matrix.rid, 'android-')
+        run: cmake -DRID=${{ matrix.rid }} -DANDROID_NDK="$ANDROID_HOME/ndk/28.2.13676358" -P native/build.cmake
+      - name: Run native smoke test
+        if: matrix.rid != 'win-arm64' && !startsWith(matrix.rid, 'android-')
+        shell: bash
+        run: |
+          export PATH="$PWD/LibYuvSharp/lib/runtimes/${{ matrix.rid }}/native:$PATH"
+          ctest --test-dir artifacts/native/${{ matrix.rid }}/yuv --output-on-failure
+      - name: Upload native library
+        uses: actions/upload-artifact@v7
+        with:
+          name: native-${{ matrix.rid }}
+          path: artifacts/runtimes/
+          if-no-files-found: error
+
+  pack:
+    needs: build
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: native-*
+          path: LibYuvSharp/lib/runtimes
+          merge-multiple: true
+      - name: Verify all runtimes were built
+        shell: pwsh
+        run: |
+          foreach ($rid in 'win-x64','win-arm64','linux-x64','linux-arm64','osx-x64','osx-arm64','android-x64','android-arm64') {
+            $extension = if ($rid.StartsWith('win-')) { 'dll' } elseif ($rid.StartsWith('osx-')) { 'dylib' } else { 'so' }
+            if (!(Test-Path "LibYuvSharp/lib/runtimes/$rid/native/libyuv_internal.$extension")) { throw "Missing $rid" }
+          }
+      - name: Pack all runtimes
+        run: dotnet pack LibYuvSharp/LibYuvSharp.csproj -c Release -o artifacts/nuget -p:GeneratePackageOnBuild=false -p:ContinuousIntegrationBuild=true
+      - uses: actions/upload-artifact@v7
+        with:
+          name: nuget-multiplatform
+          path: artifacts/nuget/*nupkg
+          if-no-files-found: error
+
+  test-desktop:
+    needs: pack
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { rid: win-x64, os: windows-2022 }
+          - { rid: win-arm64, os: windows-11-arm }
+          - { rid: linux-x64, os: ubuntu-22.04 }
+          - { rid: linux-arm64, os: ubuntu-22.04-arm }
+          - { rid: osx-x64, os: macos-15-intel }
+          - { rid: osx-arm64, os: macos-15 }
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+      - uses: actions/download-artifact@v8
+        with:
+          name: nuget-multiplatform
+          path: artifacts/nuget
+      - name: Test package loading and conversions
+        run: >-
+          dotnet test LibYuvSharp.Test/LibYuvSharp.Tests.csproj -c Release
+          --runtime ${{ matrix.rid }} -p:UseNuGetPackage=true
+          -p:RestoreAdditionalProjectSources=${{ github.workspace }}/artifacts/nuget
+
+  test-android:
+    needs: pack
+    runs-on: ubuntu-22.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+      - uses: actions/download-artifact@v8
+        with:
+          name: nuget-multiplatform
+          path: artifacts/nuget
+      - name: Install Android workload
+        run: dotnet workload install android
+      - name: Install Android SDK and Java dependencies
+        run: >-
+          dotnet build LibYuvSharp.Android.Test/LibYuvSharp.Android.Tests.csproj
+          -t:InstallAndroidDependencies -p:AcceptAndroidSdkLicenses=True
+          -p:RestoreAdditionalProjectSources=${{ github.workspace }}/artifacts/nuget
+      - name: Build Android app for both ABIs
+        run: >-
+          dotnet build LibYuvSharp.Android.Test/LibYuvSharp.Android.Tests.csproj -c Release
+          -p:RestoreAdditionalProjectSources=${{ github.workspace }}/artifacts/nuget
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Test on Android emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          target: google_apis
+          script: bash native/test-android.sh

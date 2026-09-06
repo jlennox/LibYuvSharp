@@ -1,6 +1,4 @@
 using System;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -15,8 +13,7 @@ namespace Lennox.LibYuvSharp.Tests
         [Test]
         public void AllBindingsResolveToNativeExports()
         {
-            var library = NativeLibrary.Load(Path.Combine(
-                TestContext.CurrentContext.TestDirectory, "libyuv_internal.dll"));
+            var library = NativeLibrary.Load("libyuv_internal", typeof(LibYuv).Assembly, null);
             try
             {
                 foreach (var method in typeof(LibYuv).GetMethods(BindingFlags.Public | BindingFlags.Static))
@@ -56,18 +53,28 @@ namespace Lennox.LibYuvSharp.Tests
             CollectionAssert.AreEqual(new byte[] { 13, 11, 14, 12 }, v);
         }
 
+        [Test]
+        public void AffineRowWorksOnEveryArchitecture()
+        {
+            var source = new byte[] { 1, 2, 3, 255, 4, 5, 6, 255, 7, 8, 9, 255, 10, 11, 12, 255 };
+            var destination = new byte[16];
+            var transform = new float[] { 0, 0, 1, 0 };
+            fixed (byte* src = source)
+            fixed (byte* dst = destination)
+            fixed (float* uv = transform)
+                LibYuv.ARGBAffineRow_SSE2(src, 16, dst, uv, 4);
+            CollectionAssert.AreEqual(source, destination);
+        }
+
         private static byte[] CreateJpeg()
         {
-            using (var bitmap = new Bitmap(16, 16))
-            using (var graphics = Graphics.FromImage(bitmap))
+            using (var source = GetResource("solid-color.jpg"))
             using (var stream = new MemoryStream())
             {
-                graphics.Clear(Color.FromArgb(200, 100, 50));
-                bitmap.Save(stream, ImageFormat.Jpeg);
+                source.CopyTo(stream);
                 return stream.ToArray();
             }
         }
-
         [Test]
         public void DecodeJpegToArgbAndYuv()
         {
@@ -183,55 +190,18 @@ namespace Lennox.LibYuvSharp.Tests
         [Test]
         public void EnsureLossLessRoundTrip()
         {
-            using (var stream = GetResource("scary_face.bmp"))
-            using (var image = Image.FromStream(stream))
-            using (var bmp = new Bitmap(image))
+            const int width = 17, height = 13;
+            var original = Enumerable.Range(0, width * height * 3).Select(i => (byte)(i * 37)).ToArray();
+            var argb = new byte[width * height * 4];
+            var roundtrip = new byte[original.Length];
+            fixed (byte* src = original)
+            fixed (byte* dst = argb)
+            fixed (byte* rgb = roundtrip)
             {
-                var data = bmp.LockBits(
-                    new Rectangle(Point.Empty, image.Size),
-                    ImageLockMode.ReadWrite,
-                    PixelFormat.Format24bppRgb);
-
-                var argbStride = image.Width * 4;
-                var rgbStride = image.Width * 3;
-                var dest = new byte[argbStride * image.Height];
-                var dest2 = new byte[rgbStride * image.Height];
-                var original = new byte[rgbStride * image.Height];
-
-                fixed (byte* originalPtr = original)
-                fixed (byte* destPtr = dest)
-                fixed (byte* dest2Ptr = dest2)
-                {
-                    // Put the original 24bit RGB pixel data into an array for
-                    // later validation.
-                    Buffer.MemoryCopy(
-                        (void*) data.Scan0, originalPtr,
-                        original.Length, original.Length);
-
-                    // Convert the source 24bit RGB pixel data to 32bit ARGB.
-                    // This conversion is lossless.
-                    LibYuv.RGB24ToARGB(
-                        (byte*)data.Scan0, rgbStride,
-                        destPtr, argbStride,
-                        image.Width, image.Height);
-
-                    // Convert the newly created 32bit ARGB back to the original
-                    // 24bit RGB. This conversion is lossless.
-                    LibYuv.ARGBToRGB24(
-                        destPtr, argbStride,
-                        dest2Ptr, rgbStride,
-                        image.Width, image.Height);
-                }
-
-                // Ensure that the data survived the round trip.
-                CollectionAssert.AreEqual(original, dest2);
-
-                // And this is sanity check, to ensure that we're infact
-                // doing something.
-                CollectionAssert.AreNotEqual(original, dest);
-
-                bmp.UnlockBits(data);
+                Assert.That(LibYuv.RGB24ToARGB(src, width * 3, dst, width * 4, width, height), Is.Zero);
+                Assert.That(LibYuv.ARGBToRGB24(dst, width * 4, rgb, width * 3, width, height), Is.Zero);
             }
+            CollectionAssert.AreEqual(original, roundtrip);
         }
     }
 }

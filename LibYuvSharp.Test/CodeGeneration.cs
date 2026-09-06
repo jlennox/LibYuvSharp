@@ -24,7 +24,7 @@ namespace Lennox.LibYuvSharp.Tests
             { "uint16_t", "ushort" }, { "int16_t", "short" },
             { "uint32_t", "uint" }, { "int32_t", "int" },
             { "uint64_t", "ulong" }, { "int64_t", "long" },
-            { "size_t", "UIntPtr" }, { "unsigned long", "uint" }, { "char", "sbyte" },
+            { "size_t", "UIntPtr" }, { "char", "sbyte" },
             { "void", "void" }, { "int", "int" }, { "float", "float" }, { "double", "double" },
             { "FilterMode", "FilterMode" }, { "RotationMode", "RotationMode" },
             // SIMD constant structures are opaque and their layout is platform specific.
@@ -73,8 +73,10 @@ namespace Lennox.LibYuvSharp.Tests
                     foreach (Match match in Regex.Matches(text, pattern))
                     {
                         var name = match.Groups["name"].Value;
-                        // Retain the two row functions exposed by the original wrapper.
-                        if (header == "row" && name != "ARGBAffineRow_C" && name != "ARGBAffineRow_SSE2") continue;
+                        // SSE2 has a managed fallback in LibYuv.Platform.cs.
+                        if (header == "row" && name != "ARGBAffineRow_C") continue;
+                        // AArch64CpuCaps has different signatures on Linux and Windows/macOS.
+                        if (name == "AArch64CpuCaps") continue;
                         if (!NativeLibrary.TryGetExport(dll, name, out _) || !names.Add(name)) continue;
                         var args = new List<string>();
                         var parameters = Regex.Replace(match.Groups["args"].Value, @"//[^\n]*|/\*.*?\*/", "", RegexOptions.Singleline);

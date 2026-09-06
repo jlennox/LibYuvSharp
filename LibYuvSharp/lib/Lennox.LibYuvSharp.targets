@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)../../runtimes/win-x64/native/**">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_LibYuvRuntimeRoot>$(MSBuildThisFileDirectory)../runtimes</_LibYuvRuntimeRoot>
+    <_LibYuvRuntimeRoot Condition="!Exists('$(_LibYuvRuntimeRoot)')">$(MSBuildThisFileDirectory)../../runtimes</_LibYuvRuntimeRoot>
+  </PropertyGroup>
+  <!-- Modern desktop .NET selects runtimes/{rid}/native through NuGet. -->
+  <ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework'">
+    <Content Include="$(_LibYuvRuntimeRoot)/win-x64/native/libyuv_internal.dll" Condition="'$(PlatformTarget)' != 'ARM64'">
+      <Link>libyuv_internal.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Visible>false</Visible>
     </Content>
+    <Content Include="$(_LibYuvRuntimeRoot)/win-arm64/native/libyuv_internal.dll" Condition="'$(PlatformTarget)' == 'ARM64'">
+      <Link>libyuv_internal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetPlatformIdentifier)' == 'android' Or '$(TargetFrameworkIdentifier)' == 'MonoAndroid'">
+    <AndroidNativeLibrary Include="$(_LibYuvRuntimeRoot)/android-arm64/native/libyuv_internal.so" Condition="Exists('$(_LibYuvRuntimeRoot)/android-arm64/native/libyuv_internal.so')">
+      <Abi>arm64-v8a</Abi>
+    </AndroidNativeLibrary>
+    <AndroidNativeLibrary Include="$(_LibYuvRuntimeRoot)/android-x64/native/libyuv_internal.so" Condition="Exists('$(_LibYuvRuntimeRoot)/android-x64/native/libyuv_internal.so')">
+      <Abi>x86_64</Abi>
+    </AndroidNativeLibrary>
   </ItemGroup>
 </Project>
